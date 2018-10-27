@@ -7,20 +7,19 @@
  const store = () => {
    return new Vuex.Store({
      state: () => ({
-       locales: [{
-           code: 'de',
-           name: 'DE'
-         },
-         {
-           code: 'en',
-           name: 'EN'
-         },
-         {
-           code: 'ru',
-           name: 'RU'
-         }
+       locales: [ 
+        {
+          localeName: 'ՀԱՅ',
+          activeLocale: false,
+          locale: 'am'
+        },
+        {
+          localeName: 'ENG',
+          activeLocale: false,
+          locale: 'en'
+        }
        ],
-       locale: 'en',
+       locale: '',
        data: {},
        products: '',
        productsArray: '',

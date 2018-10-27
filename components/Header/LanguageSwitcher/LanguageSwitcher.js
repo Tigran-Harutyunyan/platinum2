@@ -1,4 +1,3 @@
-import { mapGetters } from 'vuex';
 export default { 
   data() {
     return {
@@ -12,23 +11,24 @@ export default {
           activeLocale: false,
           locale: 'en'
         }
-      ]
+      ],
+      locale:''
     }
-  },
-  computed:{
-    locale(){
-      return this.$store.getters.getLocale;
-    }
-  },
+  }, 
   methods: {
-    toggleLang(locale) {
-      this.$store.dispatch('setLocale', locale);
+    switchLanguage(localeCode) {  
+      document.cookie = `locale=${localeCode}`;
       location.reload(); 
     }
   },
-  mounted() { 
+  created(){
+    this.locale = this.$cookiz.get('locale') ? this.$cookiz.get('locale') : 'en';
+
+    this.$store.dispatch('setLocale', this.locale);
+
     this.locales.forEach(item => {
       item.activeLocale = item.locale == this.locale;
     });
-  }
+  },
+ 
 }

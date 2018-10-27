@@ -1,12 +1,11 @@
 import api from './api';
- 
+
 import generalMiddleware from '../apiMiddlewares/generalMiddleware';
-let lang = 'en';
 
 const generalApi = {
 
-  getCompletedWorks() {
-    let url = `getCompletedWorks?lang=${lang}`;
+  getCompletedWorks(locale) {
+    let url = `getCompletedWorks?lang=${locale}`;
     return api.get(url).then(res => {
       if (Array.isArray(res)) {
         generalMiddleware.fromBackEnd.getCompletedWorks(res);
@@ -15,8 +14,8 @@ const generalApi = {
     });
   },
 
-  getCompletedWorkById(id) {
-    let url = `getCompletedWorkById?id=${id}&lang=${lang}`;
+  getCompletedWorkById(id, locale) {
+    let url = `getCompletedWorkById?id=${id}&lang=${locale}`;
     return api.get(url).then(res => {
       if (res.images && Array.isArray(res.images)) {
         generalMiddleware.fromBackEnd.getCompletedWorksById(res.images);
@@ -25,8 +24,8 @@ const generalApi = {
     });
   },
 
-  getSliderImages() {
-    let url = `getSliderImages?lang=${lang}`;
+  getSliderImages(locale) {
+    let url = `getSliderImages?lang=${locale}`;
     return api.get(url).then(res => {
       if (Array.isArray(res)) {
         generalMiddleware.fromBackEnd.getSliderImages(res);
@@ -35,8 +34,8 @@ const generalApi = {
     });
   },
 
-  getProjectSliderImages() {
-    let url = `getProjectSliderImages?lang=${lang}`;
+  getProjectSliderImages(locale) {
+    let url = `getProjectSliderImages?lang=${locale}`;
     return api.get(url).then(res => {
       if (Array.isArray(res)) {
         generalMiddleware.fromBackEnd.getProjectSliderImages(res);
@@ -45,8 +44,8 @@ const generalApi = {
     });
   },
 
-  getPartnerImages() { 
-    let url = `getPartnerImages?lang=${lang}`;
+  getPartnerImages(locale) {
+    let url = `getPartnerImages?lang=${locale}`;
     return api.get(url).then(res => {
       if (Array.isArray(res)) {
         generalMiddleware.fromBackEnd.getPartnerImages(res);
@@ -55,16 +54,16 @@ const generalApi = {
     });
   },
 
-  getCustomData() { 
-    let url = `getCustomData?lang=${lang}`;
-    return api.get(url).then(res => { 
+  getCustomData(locale) {
+    let url = `getCustomData?lang=${locale}`;
+    return api.get(url).then(res => {
       return res;
     });
   },
 
-  getStaff() { 
-    let url = `getStaff?lang=${lang}`;
-    return api.get(url).then(res => { 
+  getStaff(locale) {
+    let url = `getStaff?lang=${locale}`;
+    return api.get(url).then(res => {
       if (Array.isArray(res)) {
         generalMiddleware.fromBackEnd.getStaff(res);
       }
@@ -72,9 +71,9 @@ const generalApi = {
     });
   },
 
-  getSamples() { 
-    let url = `getSamples?lang=${lang}`;
-    return api.get(url).then(res => { 
+  getSamples(locale) {
+    let url = `getSamples?lang=${locale}`;
+    return api.get(url).then(res => {
       if (Array.isArray(res)) {
         generalMiddleware.fromBackEnd.getSamples(res);
       }
@@ -82,11 +81,13 @@ const generalApi = {
     });
   },
 
-  getAdvertisements(){ 
-    let url = `getAdvertisements?lang=${lang}`;
-    return api.get(url).then(res => { 
-      if (Object.keys(res).length > 0) { 
-        generalMiddleware.fromBackEnd.getAdvertisements(res); 
+  getAdvertisements(locale) { 
+
+    let url = `getAdvertisements?lang=${locale}`;
+    
+    return api.get(url).then(res => {
+      if (Object.keys(res).length > 0) {
+        generalMiddleware.fromBackEnd.getAdvertisements(res);
       }
       return res;
     });

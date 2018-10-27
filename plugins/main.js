@@ -5,7 +5,7 @@ import Vue from 'vue'
 // ATTENTION. Forgetting .vue extension next to App will cause "Failed to mount component: template or render function not defined" error
  
 import Vuelidate from 'vuelidate';
-
+Vue.use(Vuelidate);
 
 
 import {
@@ -32,6 +32,7 @@ import {
   Collapse,
   CollapseItem
 } from 'element-ui';
+
 Vue.use(Loading.directive);
 Vue.use(Carousel);
 Vue.use(CarouselItem);
@@ -58,13 +59,12 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$notify = Notification;
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
-locale.use(lang); 
+locale.use(lang);  
 
-import $ from 'jquery'; 
-let slick;
+
+
 if (process.browser) {  
-  require('gsap'); 
-  slick = require('slick-carousel'); 
+  //require('gsap');  
   Vue.component('isotope',  require('vueisotope'));
   //debounce = require('lodash.debounce');
 }
@@ -84,7 +84,7 @@ Vue.use(VueAnalytics, {
  
  
 Vue.config.productionTip = false;
-Vue.use(Vuelidate);
+
  
 
 /* let token = localStorage.getItem('token') ? localStorage.getItem("token") : '';
@@ -96,4 +96,3 @@ let user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem("user"
 if (Object.keys(user).length > 0) {
   store.dispatch('setUser', user);
 } */
- 
