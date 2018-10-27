@@ -1,0 +1,30 @@
+<div class="cart-bottom">
+    <div class="cart-products"> 
+        <table class="table-1">
+            <tr>
+                <td class="product-type">{{ $t('printingCost') }}</td>
+                <td> {{ totalPrice }} դր</td>
+            </tr>
+            <tr>
+                <td class="product-type">{{ $t('discount') }}</td>
+                <td>0.00</td>
+            </tr>
+            <tr>
+                <td class="product-type">{{ $t('shipping') }}</td>
+                <td>0.00</td>
+            </tr>
+            <tr>
+                <td class="product-type"> {{ $t('tax') }}</td>
+                <td>0.00</td>
+            </tr>  
+        </table>
+        <!-- total -->
+        <table class="table-2"> 
+            <tr>
+                <td class="product-type">{{ $t('totalPrice') }}</td>
+                <td> {{ totalPrice }}</td>
+            </tr> 
+        </table>
+      </div>
+   
+</div>

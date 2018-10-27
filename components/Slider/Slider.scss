@@ -1,0 +1,21 @@
+@media only screen and (max-width: 800px) {
+  .products-slider-banner {
+    display: none;
+  }
+  .banner-container .el-carousel__item {
+    background-size: auto;
+    background-position: unset;
+  }
+
+  .print-slide-inner .offer-text {
+    width: 100%;
+    padding: 50px 20px 0;
+    text-align: center;
+
+    p {
+      text-transform: uppercase;
+      padding-right: 20px;
+      line-height: 64px;
+    }
+  }
+}

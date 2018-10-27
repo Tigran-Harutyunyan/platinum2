@@ -1,0 +1,170 @@
+.sign-up-top {
+  width: 100%;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #af995a;
+
+  p {
+    text-transform: uppercase;
+    color: #484848;
+    line-height: 23px;
+  }
+}
+
+.btn-submit {
+  margin-top: 30px;
+  float: left;
+}
+
+.btn-links {
+  cursor: pointer;
+}
+
+.el-input {
+  padding-bottom: 10px;
+}
+
+.input-item {
+  display: flex;
+}
+
+tr {
+  td:first-child {
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 8px;
+    padding-right: 20px;
+  }
+}
+
+.sign-up-bottom {
+  width: 360px;
+  padding-top: 40px;
+  padding-bottom: 170px;
+  display: flex;
+
+  .left {
+    margin-right: 56px
+  }
+
+  .right {
+    tr {
+      td:first-child {
+        padding-bottom: 22px;
+        width: 280px;
+      }
+    }
+  }
+}
+
+.checked-input {
+  padding-top: 11px;
+}
+
+.captcha-data {
+  position: absolute;
+  left: 0;
+  bottom: -11px;
+  font-family: Myriad Pro;
+  color: #484848;
+  font-weight: normal;
+}
+
+.agreement-text {
+  text-transform: uppercase;
+  padding-top: 30px;
+  color: #a7a7a7;
+  font-size: 12px;
+  line-height: 20px;
+  padding-top: 4px;
+}
+
+.btn-submit {
+  width: 200px;
+  margin-top: 18px;
+  clear: both;
+}
+
+i {
+  font-style: normal;
+  color: #af995a;
+}
+
+.custom-checkbox {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.recaptcha-element {
+  padding-bottom: 11px;
+  padding-top: 11px;
+}
+
+.br-cart {
+  padding: 0 50px 50px;
+}
+
+@media only screen and (max-width: 900px) {
+  .player-container {
+    width: 100%;
+    padding: 0 20px
+  }
+
+  .sign-up-bottom {
+    flex-wrap: wrap;
+
+    .right {
+      width: 100%;
+      margin-top: 21px;
+    }
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .sign-up-bottom {
+    padding-bottom: 0;
+  }
+
+  .el-date-editor.el-input,
+  .el-date-editor.el-input__inner,
+  .el-input {
+    width: 100%;
+  }
+
+  .custom-checkbox {
+    width: 281px;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  tr {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  form, table,
+  td {
+    width: 100%;
+  }
+
+  tr td:first-child {
+    padding-bottom: 10px;
+  }
+
+  .sign-up-bottom>div {
+    width: 100%;
+  }
+
+  .btn-submit {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 440px) {
+  .sign-up-bottom {
+    width: 100%
+  }
+
+  .br-cart {
+    padding: 0 20px 50px;
+  }
+}

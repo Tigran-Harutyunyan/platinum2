@@ -1,0 +1,42 @@
+<div class="portfolio" >
+  <Header />
+  <HeaderCategories /> 
+  <Preloader v-if="loading" class="spinner"></Preloader>
+  <div class="main-section content-area" :class="{'is-visible':showContent}">  
+    <no-ssr>
+        <div class="portfolio-grid">
+            <isotope class="grid"
+                :options='getOptions()'
+                :list="completedWorks"  
+                v-if="completedWorks && completedWorks.length>0"> 
+                <div class="grid-item" 
+                    v-for="(element, index) in completedWorks" 
+                    :key="index" 
+                    @click="currentSlideID=element.id;">
+      
+                  <div  class="item-bg">
+                    <img :src="element.image" :alt="element.title">
+                  </div>
+      
+                  <div class="spacer"></div>
+                  <div class="shirma"></div>
+      
+                  <div class="item-text-place">
+                    <h1 class="item-title">{{ element.title }}</h1>
+                    <div class="line"></div>
+                  </div> 
+                </div> 
+            </isotope>
+          </div>
+    </no-ssr>
+  
+<!--     <Footer /> -->
+  </div>
+  
+  <PortfolioPopup id="scrolledDiv"
+    :class="{'is-scrolled':isScrolled}"
+    v-on:popupClosed="onPopupClosed"
+    :completedWorks="completedWorks"
+    :currentSlideID="currentSlideID">
+  </PortfolioPopup>  
+</div>  

@@ -1,0 +1,38 @@
+<div class="hamburger hamburger--slider" :class="{'is-active':isActive}">
+  <div class="hamburger-box" @click="isActive=!isActive">
+    <div class="hamburger-elem"></div>
+  </div>
+  <div class="nav-dropdown" v-if="isActive">
+    <div class="close-btn" @click="isActive=!isActive"></div>
+    <ul class="nav sidemenu" :class="{'user-logged-in':isAuthed}">
+      <li><a class="menu-item" @click="goTo()">{{ $t('dropdown.item1') }}</a></li>
+      <li><a class="menu-item" @click="goTo('services')">{{ $t('dropdown.item2') }}</a></li>
+      <li><a class="menu-item" @click="goTo('about-us')">{{ $t('dropdown.item3') }}</a></li>
+      <li><a class="menu-item" @click="goTo('projects')">{{ $t('dropdown.item4') }}</a></li>
+      <li><a class="menu-item" @click="goTo('why')">{{ $t('dropdown.item5') }}</a></li>
+      <li><a class="menu-item" @click="goTo('staff')">{{ $t('dropdown.item6') }}</a></li>
+      <li><a class="menu-item" @click="goTo('contact-us')">{{ $t('dropdown.item7') }}</a></li>
+      <li>
+        <a class="menu-item" @click="isActive=false; $router.push({name:'Categories',params: {id:1}})">
+          {{ $t('dropdown.item8') }}
+          <span class="line-elem-menu"></span></a>
+      </li>
+      <li class="hidden-item separate-items">
+        <a class="menu-item" @click="isActive=false; $router.push({name:'Orders'})">{{ $t('myOrders') }}</a>
+      </li>
+      <li class="hidden-item">
+          <a class="menu-item" @click="isActive=false; $router.push({name:'changePassword'})">{{ $t('changePasswordTitle') }}</a>
+      </li>
+      <li class="hidden-item">
+        <a class="menu-item" @click="isActive=false; $router.push({name:'profile'})">{{ $t('editProfile') }}</a>
+      </li>
+    </ul>
+    <div class="auth-controls">
+      <a v-if="!isAuthed" class="btn-link btn-bright" @click.prevent="perform('login')">{{ $t('form.login') }}</a>
+      <a v-if="!isAuthed" class="btn-link btn-bright" @click.prevent="perform('signUp')">{{ $t('signup.info11') }}</a>
+      <a class="btn-link btn-bright" v-if="isAuthed" @click.prevent="perform('logout')">{{ $t('logout') }}</a>
+    </div>
+    <LanguageSwitcher />
+  </div>
+  <div class="v-modal" @click="isActive=false" v-if="isActive"></div>
+</div>

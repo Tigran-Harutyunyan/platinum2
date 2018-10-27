@@ -1,0 +1,17 @@
+<div class="parallax-section" id="parallax-trigger"> 
+
+    <div v-carousel  class="staff-slider"  v-if="staffData.length">
+        <div class="swiper-slide" v-for="(item, index) in staffData" :key="index">
+            <figure class="a-info-left">
+                <img :src="item.image" :alt="item.name">
+                <figcaption>
+                    <span class="staff-name">{{ item.name }}</span>
+                    <br>
+                    <span class="staff-position">{{ item.position }}</span>
+                </figcaption>
+            </figure>
+            <p class="staff-description">{{ item.description }}</p>
+        </div>
+    </div>
+
+</div>

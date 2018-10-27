@@ -1,0 +1,94 @@
+<div class="tabs-container">
+  <tabs :tabs="tabs" @tab-changed="onTabChange"></tabs>
+  <div class="tab-content-container">
+    <div class="tab-content" v-if="activeTab==1">
+      <div class="tab-inner">
+        <ul class="download-links">
+          <li v-for="(item, index) in links" :key="index">
+            <a download :href="item.pdf">
+              <div class="link-box">
+                <img :src="item.image" :alt="item.name">
+                <div class="link-caption">{{ item.name }}</div>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content how-to-use-tab" v-else-if="activeTab==2">
+      <div v-if="locale=='am'">
+
+        <div class="tab-block">
+          <h2>Ինչպիսի՞ ֆայլեր կարող եք ուղարկել</h2>
+          <p> Խորհուրդ ենք տալիս ֆայլերը պահպանել PDF տարբերակով: Ինչպես նաև կարող եք ուղղարկել ֆայլերը հետևյալ
+            տարբերակներով `jpg, jpeg, tif, tiff, eps եւ png:
+          </p>
+          <p> Ցանկալի է, որ ուղարկեք PDF- ի նախանշված և օգտագործված տառատեսակները, PDF տարբերակով ավելի հեշտ է
+            կարգավորել:
+            Ֆայլերը ներբեռնելու ժամանակ, հիշեք՛, որ պետք է արվեն համապատասխան շտկումներ:</p>
+        </div>
+
+        <div class="tab-block">
+          <h2>Ի՞նչ գույներով պետք է լինի ֆայլերը:</h2>
+          <p>Եթե դուք մեզ ուղարկեք RGB ֆայլ, հնարավոր է գունային տարբերություն առաջանա, և կարող է չհամընկնել Ձեր
+            ներբեռնած
+            ֆայլի գունային գամմայի հետ:</p>
+          <p>Դուք պետք է միշտ սկսեք և ավարտեք ձեր նախագծերը CMYK գունային ռեժիմում:</p>
+        </div>
+
+        <div class="tab-block">
+          <h2> Ի՞նչ որակ պետք է ունենա ֆայլը:</h2>
+          <p>Ցածր որակի ֆայլերը կարող են տպագրվել ոնց որ կա կամ կարող է պահվել, մինչև նոր որակյալ ֆայլ չներբեռնվի: Դա
+            խոչընդոտելու է գործը նշված ժամանակին ստանալուն:</p>
+        </div>
+
+        <div class="tab-block">
+          <h2> Ինչպե՞ս պետք է կարգավորել կտրման եզրագծերը:</h2>
+          <p>Ֆայլերը պատրաստելիս անհրաժեշտ է եզրերից պահպանել որոշակի տարածք, քանի որ հակառակ դեպքում պրոդուկտը կարող է
+            վնասվել վերջնական կտրման ժամանակ:</p>
+          <p> Խնդրում ենք բոլոր տեքստերը տեղադրել կտրման հատվածից 5մմ ներս:</p>
+          <p> Ավելի ճիշտ ֆայլեր պատրաստելու համար կարող եք բեռնել մեր օրինակները</p>
+        </div>
+
+      </div>
+      <div v-else>
+
+        <div class="tab-block">
+          <h2>What files can you send?</h2>
+          <p> We recommend you keep the files in PDF version. You can also upload files to the following options: jpg,
+            jpeg,
+            tif, tiff, eps and png.
+          </p>
+          <p>It is desirable that you send PDF-defined and used fonts easier to configure with the PDF version. When
+            downloading files, remember that the corrections should be made.</p>
+        </div>
+
+        <div class="tab-block">
+          <h2>What colors should the files be?</h2>
+          <p> If you send us a RGB file, there may be a color difference and may not match the color gamma of your
+            downloaded
+            file.</p>
+          <p> You should always start and finish your projects in CMYK color mode.</p>
+        </div>
+
+        <div class="tab-block">
+          <h2> What quality should the file have?</h2>
+          <p> Low quality files can be printed as long as it's available or can be downloaded until the new quality
+            file is
+            downloaded. It will hinder the task at the specified time.</p>
+        </div>
+
+        <div class="tab-block">
+          <h2> How to handle cutting borders?</h2>
+          <p>When making files, it is necessary to keep certain areas from the edges, as otherwise the product may be
+            damaged during final cutting.</p>
+          <p> Please place all the texts within 5 mm from the cutoff section.</p>
+          <p> You can download our examples to make more accurate files</p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>

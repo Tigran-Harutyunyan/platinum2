@@ -1,0 +1,33 @@
+.no-image-palceholder {
+  width: 300px;
+  height: 206px;
+  margin-right: 100px;
+}
+
+.el-carousel {
+  width: 300px
+}
+
+@media only screen and (max-width: 1350px) {
+  .product-slider {
+    margin-right: 35px;
+  }
+  .no-image-palceholder {
+    margin-right: 35px;
+  }
+}
+
+@media only screen and (max-width: 910px) {
+  .product-slider {
+    margin-right: 35px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .el-carousel.product-slider {
+    margin-right: 0;
+  }
+  .no-image-palceholder {
+    margin-right: 0;
+  }
+}

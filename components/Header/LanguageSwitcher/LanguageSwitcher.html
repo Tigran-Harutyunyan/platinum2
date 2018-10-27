@@ -1,0 +1,7 @@
+<div class="language-switcher">
+  <a 
+    v-for="item in locales" 
+    @click="toggleLang(item.locale)" 
+    :class="{'active-lang':item.activeLocale}" 
+    class="menu-item-lang">{{ item.localeName }}</a>
+</div>

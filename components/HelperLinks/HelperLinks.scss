@@ -1,0 +1,158 @@
+.helper-links {
+  display: flex;
+  justify-content: flex-end;
+  background: white;
+  width: 200px;
+  margin-left: auto;
+  padding: 5px 0;
+  position: relative;
+  z-index: 1;
+
+  >div {
+    cursor: pointer;
+  }
+
+  >div:last-child {
+    border: none
+  }
+
+  ul {
+    position: absolute;
+    padding-top: 5px;
+    top: 50px;
+    left: -1px;
+    width: 400px;
+    display: none;
+
+    li {
+      background-color: rgba(255, 255, 255, 1);
+      padding: 7px 11px 5px;
+      text-transform: initial;
+      border-left: 1px solid rgba(255, 255, 255, 1);
+
+      &:hover {
+        border-left: 1px solid #af995a;
+        background-color: #ebebeb;
+      }
+    }
+
+    a {
+      color: #666666;
+      font-size: 16px;
+
+      &:hover {
+        color: #af995a;
+      }
+    }
+  }
+
+  .link-text {
+    display: flex;
+    flex-wrap: wrap;
+
+    * {
+      width: 100%;
+      font-size: 14px
+    }
+  }
+
+  .icon {
+    background-image: url("../../assets/img/sprite.svg");
+    background-size: 612px 792px;
+    background-repeat: no-repeat;
+  }
+
+  .secondary {
+    color: #131313
+  }
+
+  .cart-info {
+    border-radius: 30px;
+    border: 1px solid #131313;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    color: #131313;
+    vertical-align: middle;
+    padding-top: 3px;
+    font-size: 20px;
+    margin-top: 4px;
+    margin-left: 20px;
+  }
+
+  >div {
+    width: 200px;
+    border-right: 1px solid #af995a;
+    height: 50px;
+    padding-top: 7px;
+    padding-left: 13px;
+    color: #af995a;
+    text-transform: uppercase;
+    font-size: 18px;
+    display: flex;
+    position: relative;
+
+    .icon {
+      display: inline-block;
+    }
+  }
+
+  >div:first-child {
+    .icon {
+      width: 58px;
+      height: 39px;
+      background-position: -436px -126px;
+      margin-right: 5px;
+      flex-shrink: 0;
+    }
+  }
+
+  >div:nth-child(2) {
+    .icon {
+      width: 47px;
+      height: 37px;
+      background-position: -499px -126px;
+    }
+  }
+
+  >div:last-child {
+    border: none;
+
+    .icon {
+      width: 47px;
+      height: 37px;
+      background-position: -389px -126px;
+    }
+  }
+}
+
+.helper-links.logged-in {
+  width: 600px;
+}
+
+#personal-page:hover ul {
+  display: block;
+}
+
+@media only screen and (max-width:900px) {
+  .helper-links {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .helper-links.logged-in {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .helper-links>div:nth-child(2n) {
+    border-right: none
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .helper-links>div:nth-child(1n) {
+    border-right: none
+  }
+}

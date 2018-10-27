@@ -1,0 +1,37 @@
+<el-dialog class="portfolio-modal" title=" " 
+    :append-to-body="true" 
+    :showClose="false"
+    :visible.sync="dialogVisible" 
+    @close="closePopup">
+    
+     <div class="design-dialog" v-loading="loading"> 
+     <div class="close close-1" @click="closePopup"></div>
+      <div class="navigation">
+        <div @click=navigate(-1)>
+          <span class="prev"></span>{{ $t('controlBack') }}</div>
+        <div @click=navigate(1)>{{ $t('controlNext') }}
+          <span class="next"></span>
+        </div>
+      </div>
+      <div class="item-container" id="scrolledDiv">
+        <div class="imgs-container">
+          <div v-if="currentSlide.images">
+            <img 
+                :src="item.image" 
+                v-for="(item,index) in currentSlide.images" 
+                :key="index">
+          </div>
+        </div>
+        <div class="info-container" v-if="currentSlide[0]">
+          <div class="close" @click="closePopup"></div>
+          <h1 class="item-title">{{ currentSlide[0].title }}</h1>
+          <div class="line"></div>
+          <ul class="info-list">
+            <li>{{ $t('client') }}: {{ currentSlide[0].client }}</li> 
+            <li>{{ $t('service') }}: {{ currentSlide[0].service }} </li> 
+          </ul>
+          <p class="info-description" v-html="currentSlide[0].description"></p>
+        </div>
+      </div>
+    </div>
+ </el-dialog>

@@ -1,0 +1,11 @@
+<el-dialog title="" 
+    class="projects-lightbox" 
+    :append-to-body="true" 
+    :visible.sync="dialogTableVisible" 
+    @close="close()">
+  <img :src="popupImage" class="popup-image">
+  <div class="popup-controls">
+    <div class="slider-prev" @click=navigate(-1)></div>
+    <div class="slider-next" @click=navigate(1)></div>
+  </div>
+</el-dialog>

@@ -1,0 +1,49 @@
+<header id="appHeader" class="normal-header">
+    <nav class="nav-bar">
+        <div class="container nav-container nav1"> 
+            <NewBurger></NewBurger>
+            <a @click="$router.push({ path: '/home'})" class="left-floated logo-link">
+                <div class="logo-place"></div>
+            </a>
+            <div class="navigation-container  right-floated"> 
+                <ul class="nav sidemenu">
+                    <li class="auth-links" v-show="!isAuthenticated">
+                       <a class="btn-link" style="margin-right: -13px;" @click="showLogin=true">{{ $t('form.login') }}</a> 
+                    <li class="auth-links" v-if="!isAuthenticated">
+                        <a class="btn-link btn-bright" @click.stop="toSignupPage">{{ $t('signup.info11') }}</a>
+                    </li>
+                    <li class="auth-links" v-if="isAuthenticated">
+                        <a class="btn-link btn-bright" @click.stop="logout">{{ $t('logout') }}</a>
+                    </li>
+                    <li class="search-holder">
+                        <Search />
+                    </li> 
+                    <li class="mobile-search-toggler">
+                        <span>    
+                            <i class="el-input__icon el-icon-search ordinary-search" 
+                            @click.stop ="isMobileSearch=!isMobileSearch"></i> 
+                        </span>
+                    </li>
+                    <li class="cart-link" v-if="isAuthenticated">
+                        <a class="icon-cart" @click.stop="goToCart()"> 
+                            <span>{{ cartItems.length }}</span>
+                        </a>
+                    </li>
+                    <li class="lang-toggler">
+                        <LanguageSwitcher /> 
+                    </li>
+             
+                </ul>
+            </div> 
+        </div>
+        <SearchMobile v-show="isMobileSearch" @closeSearch="isMobileSearch=false"/>
+    </nav>
+    
+    <Login 
+        v-if="showLogin"
+        @close="showLogin=false"
+        v-on:LoginSuccess ="onLoginSuccess"
+        v-on:onPassRecovery = "showLogin=false">
+    </Login>
+
+</header>

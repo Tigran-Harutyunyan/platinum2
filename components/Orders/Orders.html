@@ -1,0 +1,39 @@
+<div>
+  <div class="bordered-block br-cart">
+    <h3 class="product-category-title">{{ $t('orderStatus') }}</h3>
+    <el-tabs v-model="activeTab" type="card" @tab-click="handleClick">
+      <el-tab-pane :label="$t('orderStatus')" name="1"></el-tab-pane>
+      <el-tab-pane :label="$t('completedOrders')" name="2"></el-tab-pane>
+      <el-tab-pane :label="$t('unapprovedOrders')" name="3"></el-tab-pane>
+    </el-tabs>
+
+    <Preloader v-if="isLoading" class="prelaoder"></Preloader>
+
+    <div class="table-container orders-table-container" v-else>
+      <table class="orders-table orders-table-horizontal orders-table-responsive">
+        <thead>
+          <tr>
+            <th>{{ $t('orderNumber') }}</th>
+            <th>{{ $t('orderDate') }}</th>
+            <th>{{ $t('orderName') }}</th>
+            <th>{{ $t('orderStatus') }}</th>
+            <th>{{ $t('orderPrice') }}</th>
+            <th>{{ $t('action') }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(item,index) in orderitems" :key="index">
+            <td>{{ item.number }}</td>
+            <td class="order-name">{{ item.approved_at }}</td>
+            <td class="order-name">{{ item.name }}</td>
+            <td>{{ item.statusName }}</td>
+            <td>{{ item.price }}</td>
+            <td> <a class="table-link" @click="openOrderDetailPopup(item)">{{ $t('orderDetails') }}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <OrderDetailsPopup :order="currentOrder" :visible="showSummary" @close="onClose">
+  </OrderDetailsPopup>
+</div>

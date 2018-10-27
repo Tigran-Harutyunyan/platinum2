@@ -1,0 +1,12 @@
+<div class="partners-slider-container">  
+ 
+  <div  v-carousel  v-if="partnersImages.length>0">
+      <div class="box"   
+          v-for="(partner, index) in partnersImages" :key="index">
+          <div class="partners-box">
+            <img :src="partner.image" :alt="partner.text">  
+          </div>
+      </div> 
+  </div> 
+
+</div>

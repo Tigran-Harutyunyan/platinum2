@@ -1,0 +1,27 @@
+<div>
+  <div class="uploads-container">
+    <div class="upload-img" v-bind:style='styleObject1' style="margin-right:30px"></div>
+    <div class="upload-img" v-bind:style='styleObject2' v-if="!oneSide"></div>
+  </div>
+  <p class="upload-description">{{ $t('uploadFileDescription') }}</p>  
+
+  <el-upload class="upload-demo up-demo1" accept="image/*" ref="upload1" action=""
+    :on-change="handleChange1"  
+    :file-list="fileList1" 
+    :auto-upload="false"  
+    :on-remove="onHandleRemove1">
+    <el-button size="small" type="primary" class="btn-submit btn-invert">{{ $t('uploadFile1')}}</el-button>
+  </el-upload>
+
+  <el-upload class="upload-demo" accept="image/*" action=""  v-if="!oneSide"
+    ref="upload2" 
+    :on-change="handleChange2"
+    :file-list="fileList2" 
+    :auto-upload="false"  
+    :on-remove="onHandleRemove2">
+    <el-button size="small" type="primary" class="btn-submit btn-invert">{{ $t('uploadFile2')}}</el-button>
+  </el-upload>
+
+  <div class="el-upload__tip">{{ $t('sizeRestriction')}}</div>  
+
+ </div>

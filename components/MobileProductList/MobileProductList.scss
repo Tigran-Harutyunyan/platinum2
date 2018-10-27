@@ -1,0 +1,106 @@
+ .mobile-products-list {
+   position: fixed;
+   top: 68px;
+   z-index: 10000;
+   width: 300px;
+   transform: translateX(-300px);
+   transition: transform .3s ease-in-out
+ }
+
+ .backdrop {
+   position: fixed;
+   width: 100%;
+   height: 100vh;
+   z-index: 11;
+   background: #000000de;
+   transform: translateX(-100vw);
+   transition: transform .3s ease-in-out;
+   opacity: 0;
+   visibility: hidden;
+   top:0
+ }
+ 
+
+ .close-btn {
+   background-image: url("../../assets/img/sprite.png");
+   width: 17px;
+   height: 16px;
+   background-position: -280px -226px;
+   top: 85px;
+   right: 20px;
+   position: absolute;
+   cursor: pointer;
+ }
+
+ .menu-item {cursor: pointer;}
+ .scroll-area {
+   height: calc(100vh - 146px);
+   overflow-y: auto;
+   overflow-x: hidden;
+   background-color: #090908
+ }
+
+ .open-dropdown {
+   .backdrop {
+     transform: translateX(0);
+     opacity: 1;
+     visibility: visible;
+   }
+
+   .mobile-products-list {
+     transform: translateX(0);
+   }
+ }
+
+ .mobile-products {
+   padding-top: 8px;
+
+   li {
+     a {
+       padding: 7px 3px 9px 20px;
+       border-left: 2px solid #141414;
+       width: 100%;
+       font-size: 14px;
+       display: block;
+      text-transform: uppercase;
+       &:hover {
+         border-left: 2px solid #af995a;
+         background: #141414;
+       }
+     }
+
+     a.router-link-active, a.nuxt-link-active  {
+       border-left: 2px solid #af995a;
+       color: #af995a;
+       background: #141414;
+     }
+   }
+ }
+ 
+.auth-controls {
+  display: none;
+  width: 100%;
+  padding: 20px 5px 20px;
+  background: #090908; 
+  a {
+    width: 110px;
+    padding-left: initial;
+    padding-right: initial;
+  }
+
+  a:nth-child(2) {
+    margin-left: 10px;
+  }
+}
+ @media only screen and (max-width: 920px) { 
+   .auth-controls {
+     display: flex;
+     justify-content: center
+   }
+ }
+ @media only screen and (max-width: 550px) { 
+  .mobile-products-list  {
+    width: 100%;
+    transform: translateX(-550px); 
+  }
+}

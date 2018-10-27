@@ -1,0 +1,65 @@
+<div :class="{'open-dropdown':dropdownOpened}" >
+  <div class="backdrop">
+    <!-- <div class="close-btn" @click="close"></div> -->
+  </div>
+  <nav class="mobile-products-list">
+    <div class="auth-controls">
+      <a v-if="!token" class="btn-link btn-bright" @click="navigateTo('login')">{{ $t('form.login') }}</a>
+      <a v-if="!token" class="btn-link btn-bright" @click="navigateTo('signUp')">{{ $t('signup.info11') }}</a>
+      <a class="btn-link btn-bright" v-if="token" @click="navigateTo('logout')">{{ $t('logout') }}</a>
+    </div>
+    <div class="scroll-area"> 
+      <el-collapse v-model="activeNames" accordeon="false">
+        <el-collapse-item :title="$t('dropdown.item1')" name="0">
+          <ul class="mobile-products">
+            <li><a class="menu-item" @click="scrollTo()">{{ $t('dropdown.item1') }}</a></li>
+            <li><a class="menu-item" @click="scrollTo('services')">{{ $t('dropdown.item2') }}</a></li>
+            <li><a class="menu-item" @click="scrollTo('about-us')">{{ $t('dropdown.item3') }}</a></li>
+            <li><a class="menu-item" @click="scrollTo('projects')">{{ $t('dropdown.item4') }}</a></li>
+            <li><a class="menu-item" @click="scrollTo('why')">{{ $t('dropdown.item5') }}</a></li>
+            <li><a class="menu-item" @click="scrollTo('staff')">{{ $t('dropdown.item6') }}</a></li>
+            <li><a class="menu-item" @click="scrollTo('contact-us')">{{ $t('dropdown.item7') }}</a></li>
+            <li><a class="menu-item" @click="navigateTo('design')">{{ $t('services.design') }}</a></li>
+            <li><a class="menu-item" @click="navigateTo('categories')">{{ $t('dropdown.item8') }}</a></li>
+          </ul>
+        </el-collapse-item>
+
+        <el-collapse-item :title="$t('user')" name="5" v-if="token">
+          <ul class="mobile-products">
+            <li class="hidden-item separate-items">
+              <a class="menu-item" @click="navigateTo('Orders')">{{ $t('myOrders') }}</a>
+            </li>
+            <li class="hidden-item">
+              <a class="menu-item" @click="navigateTo('changePassword')">{{ $t('changePasswordTitle') }}</a>
+            </li>
+            <li class="hidden-item">
+              <a class="menu-item" @click="navigateTo('profile')">{{ $t('editProfile') }}</a>
+            </li>
+          </ul>
+        </el-collapse-item>
+
+        <el-collapse-item 
+          :title="group[0].category_name" 
+          :name="index" 
+          v-for="(group, index) in products" :key="index">
+          <ul v-if="group" class="mobile-products">
+            <li @click="close()">
+              <router-link :to="`/category/${group[0].category_id}`">
+                <h3>{{ $t('seeMore') }}</h3>
+              </router-link>
+            </li>
+            <li v-for="(item,index) in group" :key="index" @click="close()">
+              <router-link :to="item.href"  
+                v-bind:class="{'active-product-list' : item.isActive}">
+                {{ item.name }}
+              </router-link>
+            </li>
+          </ul>
+        </el-collapse-item>
+
+      </el-collapse>
+    
+      <div class="spacer"></div>
+    </div>
+  </nav>
+</div>

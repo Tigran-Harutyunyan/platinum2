@@ -1,0 +1,106 @@
+<div class="content-area contacts-section" id="area-contacts">
+  <!-- Partners -->
+  <PartnersSlider/>
+  <!-- Partners -->
+
+  <div class="main-inner" id="section-5"> 
+    <section class="contact-us-section" id="section-contact-us">
+      <div class="large-triangle7 triangles" id="triangle7"></div>
+      <div class="large-triangle10 triangles" id="triangle10"></div>
+      <div class="large-triangle9 triangles" id="triangle9"></div>
+
+      <div class="contacts-subsection">
+        <div class="section-title-place">
+          <div class="letter-divider">
+            <h6>06</h6>
+          </div>
+          <h5>{{ $t('contacts.title') }}</h5>
+          <span class="vert-line"></span>
+        </div>
+      </div>
+
+      <div class="rating-place right-floated">
+        <ul class="right-floated">
+          <li class="stars rated"></li>
+          <li class="stars rated"></li>
+          <li class="stars rated"></li>
+          <li class="stars rated"></li>
+          <li class="stars"></li>
+        </ul>
+        <p class="partners-opinion-p">{{ $t('partnersOpinion') }}</p>
+      </div>
+    </section>
+  </div>
+  <div class="partners-inner">
+    <div class="partners-inner-container">
+      <div class="partners-left left-floated">
+        <p class="contact-us-p">{{ $t('contacts.toContact') }}</p>
+        <div class="info-platinumink-am">
+          <span>{{ $t('address.part2') }} {{ customData.email}}</span>
+          <span>{{ $t('address.part4') }} {{ customData.phone}}</span>
+        </div>
+        <h5 class="subscription_offer">{{ $t('subscription_offer') }} </h5>
+        <div class="form-container home-page-subcription-form">
+          <form class="subscription-form" name="subscription_form"
+            v-on:submit.prevent="onSubmitSubscribe" 
+            @submit="$v.subscription_email.$touch();">
+            <div class="default-inp-row">
+              <input class="def-input" type="email" :placeholder="$t('form.email')"  name="contact_email"
+                v-model="subscription_email" :class="{'has-error': $v.subscription_email.$error}" >
+              <input type="submit" class="btn-submit" :value="$t('subscribe')">
+            </div>
+          </form>
+        </div>
+        <div class="social-place">
+          <p>{{ $t('contacts.join') }}</p>
+          <SocialMedia/>
+        </div>
+        <p class="rights-info" v-html="customData.copyright"> 
+        </p>
+      </div>
+      <div class="partners-right right-floated" v-if="customData.working_hours">
+        <div class="availability">{{ $t('workingHoursInfo') }}
+          <br>{{ customData.working_hours }}
+        </div>
+        <div class="form-place">
+          <div class="form-container">
+            <form v-on:submit.prevent="onSubmit" 
+              @submit="$v.email.$touch();$v.$touch();$v.subject.$touch()" 
+              class="contact-form"
+              name="contact_form">
+              <div class="contact-form-referral ref1">
+                <div class="default-inp-row">
+                  <input id="contact_subject" class="def-input" type="text" 
+                    v-model="subject"  
+                    :placeholder="$t('form.subject')" 
+                    :class="{'has-error': $v.subject.$error}">
+                </div>
+                <div class="elem-spacer"></div>
+                <div class="default-inp-row ">
+                  <input name="contact_email" class="def-input" type="email" 
+                    :placeholder="$t('form.email')" 
+                    v-model="email" 
+                    :class="{'has-error': $v.email.$error}">
+                </div>
+                <div class="elem-spacer"></div>
+                <div class="default-inp-row ">
+                  <textarea name="contact_message" class="def-input" id="contact_message" cols="30" rows="10"
+                    :placeholder="$t('form.message')" 
+                    :class="{'has-error': $v.$error}" 
+                    v-model="message"></textarea>
+                </div>
+                <div class="elem-spacer"></div>
+                <div class="default-inp-row row-btn">
+                  <input type="submit" class="btn-submit" 
+                  :value="$t('form.send')">
+                  <!-- <el-button type="primary" class="btn-submit" :loading="loading">{{ $t('form.send') }}</el-button> -->
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="contacts-space clearfix"></div>
+    </div>
+  </div>
+</div>

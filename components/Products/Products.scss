@@ -1,0 +1,37 @@
+.product-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.products-main {
+  padding-left: 35px;
+  padding-bottom: 83px;
+}
+
+@media only screen and (max-width: 850px) {
+  .product-category-title {
+    text-align: center
+  }
+
+  .products-main {
+    padding-left: 0;
+  }
+
+  .product-items {
+    width: 535px;
+    margin: 0 auto;
+
+    .product-item:nth-child(even) {
+      margin-right: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 580px) {
+  .product-items {
+    width: 250px; 
+    .product-item {
+      margin-right: 0;
+    }
+  }
+}

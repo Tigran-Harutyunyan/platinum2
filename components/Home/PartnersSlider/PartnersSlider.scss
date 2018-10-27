@@ -1,0 +1,29 @@
+.partners-carousel {
+    width: 1500px;
+    margin: 0 auto
+  }
+@media only screen and (max-width: 1620px) {
+    .partners-carousel {
+      width: 1300px;
+    }
+  }
+  @media only screen and (max-width: 1400px) {
+    .partners-carousel {
+      width: 1080px;
+    }
+  }
+  @media only screen and (max-width: 1190px) {
+    .partners-carousel {
+      width: 760px;
+    }
+  }
+  @media only screen and (max-width: 890px) {
+    .partners-carousel {
+      width: 500px;
+    }
+  }
+  @media only screen and (max-width: 630px) {
+    .partners-carousel {
+      width: 200px;
+    }
+  }

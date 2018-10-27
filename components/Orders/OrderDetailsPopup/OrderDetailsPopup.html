@@ -1,0 +1,35 @@
+<el-dialog class="order-details-modal" title=" " width="800px"
+ :append-to-body="true" 
+ :showClose="false"
+ :visible.sync="isVisible" @close="$emit('close')">
+    <div class="popup-header">
+        <h2>{{$t('ordersPopup.header') }} </h2>
+        <div class="close" @click="$emit('close')"></div>
+    </div>
+    <table class="order-details-table">
+        <tr>
+            <td>{{ $t('ordersPopup.statusName') }}</td>
+            <td>{{ order.statusName }}</td>
+        </tr>
+        <tr>
+            <td>{{ $t('ordersPopup.number') }}</td>
+            <td>{{ order.number }}</td>
+        </tr>
+        <tr>
+            <td>{{ $t('ordersPopup.date') }}</td>
+            <td>{{ order.approved_at }}</td>
+        </tr>
+        <tr>
+            <td>{{ $t('ordersPopup.productName') }}</td>
+            <td>{{ order.name  }}</td>
+        </tr>
+        <tr  v-for="(value, key) in order.product_properties">
+            <td>{{ value[0].property_name }}</td>
+            <td>{{ value[0].name }}</td>
+        </tr>  
+        <tr>
+            <td>{{ $t('ordersPopup.price') }}</td>
+            <td>{{ order.price }}</td>
+        </tr> 
+    </table>
+</el-dialog>

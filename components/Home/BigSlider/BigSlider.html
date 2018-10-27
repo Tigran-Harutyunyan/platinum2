@@ -1,0 +1,68 @@
+<div class="banner" id="mainSlider" :class="{active:isLogoActive}">
+  <div class="banner-nav-inner">
+    <div class="slides-info-place">
+      <span id="current-slide">{{ currentSlide }}</span>
+      <span id="items-counter">{{ slidesLength }}</span>
+    </div>
+    <div class="social-place slider-social-btns">
+      <social-media></social-media>
+    </div>
+  </div>
+  <!-- Home slider  -->
+  <div v-carousel class="staff-slider" ref="bigSlider">
+    <div class="home-slide-inner">
+      <logo-animation></logo-animation>
+      <div class="main-banner-text banner1-text">
+        <p>{{ $t('bannerText.text1') }}</p>
+        <br>
+        <p>{{ $t('bannerText.text2') }}</p>
+      </div>
+      <router-link class="btn-link banner-see-more-link" to="/category/1">
+        {{ $t('orderOnline') }}
+      </router-link>
+      <div class="banner-line"></div>
+    </div>
+    <div class="big-slide-2">
+      <div class="new-service-ad-texts main-banner-text" :class="{animated:showBoxes}">
+        <p class="slideInLeft">{{ $t('sliderText1') }}</p>
+        <br>
+        <p class="big-text slideInRight">{{ $t('sliderText2') }}</p>
+        <br>
+        <p class="slideInLeft">{{ $t('sliderText3') }}</p>
+      </div>
+      <div class="new-service-types-boxes" :class="{animated:showBoxes}">
+        <div class="service-item-container ">
+          <div class="service-item">
+            <span class="item-graphic"></span>
+            <p>{{ $t('online_service_1') }}</p>
+          </div>
+          <div class="pointer fadeInLeft"></div>
+        </div>
+        <div class="service-item-container ">
+          <div class="service-item">
+            <span class="item-graphic"></span>
+            <p>{{ $t('online_service_2') }}</p>
+          </div>
+          <div class="pointer fadeInLeft"></div>
+        </div>
+        <div class="service-item-container ">
+          <div class="service-item">
+            <span class="item-graphic"></span>
+            <p>{{ $t('online_service_3') }}</p>
+          </div>
+          <div class="pointer fadeInLeft"></div>
+        </div>
+        <div class="service-item-container ">
+          <div class="service-item">
+            <span class="item-graphic"></span>
+            <p>{{ $t('online_service_4') }}</p>
+          </div>
+        </div>
+      </div>
+      <router-link class="btn-link banner-see-more-link" to="/category/1"> {{ $t('orderOnline') }}
+      </router-link>
+      <div class="banner-line"></div>
+    </div>
+ <!--    <div class="swiper-pagination big-slider-pagination" slot="pagination"></div> -->
+  </div>
+</div>

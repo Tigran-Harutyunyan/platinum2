@@ -1,0 +1,20 @@
+<div v-click-outside="close" class="search-container">
+  <input class="search-input el-input__inner ordinary-search"  
+      :placeholder="$t('search')"   
+      v-on:change="search"
+      v-model="searchKey">
+    <i  class="el-input__icon el-icon-search ordinary-search" @click="search"></i>  
+  <div v-if="showSearchResults" class="search-results">
+    <ul class="search-dropdown">
+      <li v-for="(item, index) in searchResults" :key="index" @click="close"> 
+        <router-link  
+          :to="item.url">{{ item.name }}
+        </router-link> 
+      </li>
+      <li v-if="noResults">
+        <span class="no-results">No results found</span>
+      </li>
+    </ul>
+  </div>
+  <div class="search-bottom"></div>
+</div>

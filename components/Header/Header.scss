@@ -1,0 +1,108 @@
+.on-signup {
+  font-size: 14px;
+  color: #434343;
+  text-transform: initial;
+  padding: 20px 0 6px;
+}
+
+.create-link {
+  color: #af995a;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+.el-icon-close {
+  position: absolute;
+  right: 13px;
+  top: 8px;
+  font-size: 21px;
+  color: #b2b2b2;
+  cursor: pointer;
+}
+
+.navigation-container {
+  display: inline-flex
+}
+
+.el-input__icon {
+  line-height: 39px;
+  cursor: pointer
+}
+
+.mobile-category-list-toggler {
+  display: block;
+  background-image: url("../../assets/img/sprite.png");
+  width: 22px;
+  height: 18px;
+  background-position: -306px -224px;
+  cursor: pointer;
+  float: left;
+  margin-top: 25px;
+  margin-right: 15px;
+}
+
+.icon-cart {
+  background-image: url("../../assets/img/sprite.svg");
+  background-size: 612px 792px;
+  background-repeat: no-repeat;
+  width: 47px;
+  height: 37px;
+  background-position: -389px -126px;
+  margin-top: -10px;
+
+  span {
+    position: absolute;
+    right: 0;
+    top: -5px;
+    color: white;
+    color: #af995a;
+  }
+}
+
+.lang-toggler {
+  padding-top: 0; 
+  padding-left: 10px;
+
+  a:first-child {
+    margin-bottom: 9px;
+  }
+}
+
+.mobile-search-toggler {
+  display: none;
+}
+
+@media only screen and (max-width: 910px) {
+  .mobile-category-list-toggler {
+    display: block;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  .search-input {
+    width: 150px;
+  }
+
+  .cart-link {
+    padding-left: 0px !important;
+  }
+
+  .nav li.search-holder {
+    padding-left: 0;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .search-holder {
+    display: none;
+  }
+  .mobile-search-toggler {
+    display: block;
+    font-size: 19px;
+    color: white;
+    margin-top: 0;
+    i {
+      line-height: 0;
+    }
+  }
+}

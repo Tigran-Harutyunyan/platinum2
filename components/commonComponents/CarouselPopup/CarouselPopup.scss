@@ -1,0 +1,34 @@
+.popup-image {
+  width: 100%;
+}
+
+.popup-controls {
+  height: 20px;
+  position: absolute;
+  width: calc(100% - 40px);
+  top: 50%;
+  width: calc(100% - 40px);
+  display: flex;
+  justify-content: space-between;
+
+  .slider-prev,
+  .slider-next {
+    background-image: url("../../../assets/img/sprite.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    cursor: pointer;
+    height: 55px;
+    width: 22px;
+    top: 53%;
+  }
+}
+
+.slider-next {
+  background-position: -130px 0px;
+  margin-right: 10px;
+}
+
+.slider-prev {
+  background-position: -96px 0px;
+  margin-left: 10px;
+}

@@ -1,0 +1,27 @@
+<div>
+    <Header /> 
+    <HeaderCategories /> 
+
+    <div class="main-section content-area" style="margin-top: 68px;" id="products">
+
+        <Slider />
+
+        <div class="content-area products-area" style="position:relative">
+            <div class="products-inner"> 
+                <div class="large-triangle1 triangles tr-1"></div>
+                <div class="large-triangle1 triangles tr-2"></div> 
+                <div class="large-triangle1 triangles tr-3"></div>
+                <div class="large-triangle1 triangles tr-4"></div>
+
+                <sidebar v-show="showSidebar"></sidebar>
+
+                <div class="products-main">
+                    <HelperLinks/>
+                    <nuxt-child keep-alive/>
+                    <InfoTabs v-show="showInfoTabs"></InfoTabs>
+                </div>
+            </div>
+        </div>
+        <Footer />
+    </div>
+</div>

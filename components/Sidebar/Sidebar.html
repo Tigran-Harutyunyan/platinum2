@@ -1,0 +1,19 @@
+<div class="products-sidebar">
+    <h2 class="sidebar-title">{{ $t('products') }}</h2> 
+    <div  class="subsection-container">
+        <div class="sidebar-subsection" v-for="group in products"> 
+            <nuxt-link  :to="`/category/${group[0].category_id}`">
+                <h3>{{ group[0].category_name }} </h3>
+            </nuxt-link> 
+            <ul v-if="group">
+                <li v-for="(item,index) in group" :key="index">
+                    <nuxt-link   
+                        :to="item.href"  
+                        v-bind:class="{'active-product-list' : item.isActive}">
+                        {{ item.name }} 
+                    </nuxt-link> 
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

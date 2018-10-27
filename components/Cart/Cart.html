@@ -1,0 +1,46 @@
+<div class="products-main">
+  <div class="bordered-block br-cart">
+    <h3 class="product-category-title">{{ $t('cart') }}</h3>
+    <Preloader v-if="isLoading" class="prelaoder"></Preloader>
+    <div class="product-details-inner" v-if="cartItems.length && !isLoading">
+      <div class="cart-top" v-for="(item, index) in cartItems" :key="index">
+        <div class="spacer"></div>
+        <div class="cart-images">
+          <div class="cart-img-container" v-if="item.front_side">
+            <div class="cart-img" v-bind:style="item.frontBGstyle"> </div>
+            <h5>{{ $t('front') }}</h5>
+          </div>
+          <div class="cart-img-container" v-if="item.back_side">
+            <div class="cart-img" v-bind:style="item.backBGstyle"> </div>
+            <h5>{{ $t('back') }}</h5>
+          </div>
+        </div>
+        <div class="cart-products">
+          <h2 class="product-type item-name">{{ item.name }}</h2>  
+          <table>
+             <tr v-for="(value, key) in item.product_properties">
+              <td class="product-type">{{ key }}</td>
+              <td>{{ value[0].name }}</td>
+            </tr>
+          </table>
+          <CartItemActions :item="item" v-on:deleteCartItem="showConfirmation" />
+        </div>
+      </div>
+
+      <CartTotals :totalPrice="totalPrice" />
+
+      <div class="pricing-cell">
+        <a href="javascript:void(0)" 
+          @click="$router.push({name:'Categories', params: {id:1}})" class="link">
+          {{ $t('continueShopping') }}</a>
+        <el-button class="btn-submit btn-invert " type="text" 
+          @click="moveProductToOrders" :loading="isMovingToOrder">
+          {{ $t('pay') }}
+        </el-button>
+      </div>
+    </div>
+    <div class="empty-cart" v-if="isCartEmpty">
+      <p>{{ $t('emptyCart') }} </p>
+    </div>
+  </div>
+</div>

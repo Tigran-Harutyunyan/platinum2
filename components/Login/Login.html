@@ -1,0 +1,52 @@
+<el-dialog title="" 
+    class="login-window" 
+    :append-to-body="true" 
+    :visible.sync="dialogTableVisible" 
+    @close="close"> 
+
+    <div class="login-block">
+
+        <form 
+            v-if="loginMode"
+            v-on:submit.prevent="login"  
+            @submit="$v.email.$touch();$v.password.$touch();"> 
+            <el-input 
+                v-model="email" 
+                :placeholder="$t('form.email')" 
+                :class="{'has-error': $v.email.$error}">
+            </el-input>
+            <div class="spacer-1"></div>
+            <el-input 
+                v-model="password" 
+                type="password"
+                :placeholder="$t('form.password')" 
+                :class="{'has-error': $v.password.$error}">
+            </el-input>
+            <span class="forgot-pass-link" 
+                @click="loginMode=false">{{ $t('form.forgotPassword') }}</span> 
+            <el-button class="btn-submit btn-invert" type="text" 
+                @click="login"  
+                :disabled="!isLoginFormValid" 
+                :loading="isLoading">{{ $t('form.login') }}</el-button>
+        </form>
+
+        <form  
+            v-else 
+            v-on:submit.prevent="recoverPass" 
+            @submit="$v.recoveryMail.$touch();">
+            <el-input class="password-recovery-input" 
+                v-model="recoveryMail" 
+                :class="{'has-error': $v.recoveryMail.$error}"
+            :placeholder="$t('form.email')">
+            </el-input> 
+            <span class="forgot-pass-link" 
+                @click="loginMode=true">{{ $t('form.login') }}</span>
+            <el-button class="btn-submit btn-invert" type="text" 
+            @click="recoverPass"  
+            :disabled="!isValidRecovery" 
+            :loading="isLoading">{{ $t('form.recovery') }}</el-button>
+        </form>
+
+    </div>   
+
+</el-dialog>

@@ -1,0 +1,33 @@
+<section class="services-section" id="section-services">
+  <div class="section-title-place">
+    <div class="letter-divider">
+      <h6>01</h6>
+    </div>
+    <h5>{{ $t('services.title') }}</h5>
+    <span class="vert-line"></span>
+  </div>
+
+  <div class="services-inner flex-section boxes-type-1  active-services" id="service-boxes">
+    <div class="services-box service-box-large" @click="$router.push({path:'/design'})">
+      <div class="box-image"></div>
+      <h2 class="box-title">{{ $t('services.design') }} </h2>
+      <a class="service-read-more">{{ $t('readMore') }}
+        <i class="services-more-i"></i>
+      </a>
+    </div>
+    <div class="services-box service-box-large" @click="$router.push({path:'/advertisements'})">
+      <div class="box-image"></div>
+      <h2 class="box-title">{{ $t('services.advertising') }} </h2>
+      <a class="service-read-more">{{ $t('readMore') }}
+        <i class="services-more-i"></i>
+      </a>
+    </div>
+    <div class="services-box service-box-large" @click="$router.push({path:'category/1'})">
+      <div class="box-image"></div>
+      <h2 class="box-title">{{ $t('services.printing') }} </h2>
+      <a class="service-read-more">{{ $t('readMore') }}
+        <i class="services-more-i"></i>
+      </a>
+    </div>
+  </div>
+</section> 

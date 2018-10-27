@@ -1,0 +1,53 @@
+<div class="ads sliders-place noselect projects-slider-container">
+    
+   <Preloader v-if="isLoading" class="prelaoder"></Preloader> 
+
+    <div class="advert-row"
+        v-for="(category,index) in adCategories" :key="index"
+        v-if="Object.keys(adCategories).length>0 && !isLoading">
+        <div class="section-title-place"> 
+            <h5>{{ $t('' + index) }}</h5>
+            <span class="vert-line"></span>
+        </div>
+         
+        <div v-carousel="category.length" v-if="category.length>0">
+            <div class="box"  
+                @click="openPopup(index2,category)" 
+                v-for="(item, index2) in category" :key="index2">
+                <img class="open-popup-link mfp-prevent-close" 
+                    :src="item.thumbnail" 
+                    :alt="item.title"> 
+            </div> 
+        </div>   
+    </div> 
+
+    <div class="section-title-place"> 
+        <h5>{{ $t('tv_audio_ads') }}</h5>
+        <span class="vert-line"></span>
+    </div>
+    <div class="audio-ads" v-if="audioAds.length>0">
+        <div class="player-container" v-for="(item, index) in audioAds">
+          <div class="play-container-inner">
+                <div class="audio-header">
+                    {{ item.title }} : {{ item.description }} 
+                </div>
+                <audio  controls>
+                    <source :src="item.audio"> 
+                </audio>
+                
+              <!--   <div class="buttons-container">
+                    <input type="submit" class="btn-submit btn-invert" :value="$t('play')">
+                    <input type="submit" class="btn-submit btn-invert" :value="$t('download')"> 
+                </div> -->
+          </div>
+        </div>
+    </div>
+ 
+
+    <CarouselPopup 
+      v-if="dialogTableVisible"
+      :index="index"  
+      :items="category"
+      @close="dialogTableVisible=false">
+    </CarouselPopup>
+</div>

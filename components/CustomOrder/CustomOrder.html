@@ -1,0 +1,81 @@
+<div class="products-main">
+  <div class="bordered-block br-cart">
+    <h3 class="product-category-title">{{ $t('uploadOurselves') }}</h3>
+    <div class="product-details-inner">
+      <div class="sign-up-top">
+        <p>{{ $t('customOrder.heading1') }}
+          <br>{{ $t('customOrder.heading2') }}
+        </p>
+      </div>
+      <form v-on:submit.prevent="onSubmit" @submit="$v.width.$touch();$v.height.$touch();$v.colors.$touch();$v.$touch();">
+        <div class="sign-up-bottom">
+          <div class="left">
+            <table class="table-2">
+              <tbody>
+                <tr>
+                  <td>{{ $t('customOrder.type') }}</td>
+                  <td>
+                    <el-select v-model="product_id" :placeholder="$t('select')">
+                      <el-option v-for="(item, index) in products" :key="index" :label="item.name" :value="item.id">
+                      </el-option>
+                    </el-select>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ $t('customOrder.height') }}</td>
+                  <td>
+                    <el-input v-model="height" :class="{'has-error': $v.height.$error}"></el-input>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ $t('customOrder.width') }}</td>
+                  <td>
+                    <el-input v-model="width" :class="{'has-error': $v.width.$error}"></el-input>
+                  </td>
+                </tr>
+                <tr>
+                  <td>{{ $t('customOrder.colors') }}</td>
+                  <td>
+                    <el-input v-model="colors" :class="{'has-error': $v.colors.$error}"></el-input>
+                  </td>
+                </tr>
+                <tr class="upload-logo-block">
+                  <td>{{ $t('customOrder.logo') }}</td>
+                  <td>
+                    <el-upload class="upload-demo up-demo1" action="" :on-change="handleUpload" :file-list="fileList"
+                      :auto-upload="false">
+                      <el-button size="small" type="primary" class="upload-logo-btn btn-submit btn-invert">
+                        {{ $t('uploadFile')}}</el-button>
+                    </el-upload>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="top-line"><span>{{ $t('customOrder.textInfo1') }}</span> <br>
+                      <span>{{ $t('customOrder.textInfo2') }}</span>
+                    </div>
+                  </td>
+                  <td>
+                    <el-input type="textarea" :rows="2" v-model="message" :class="{'has-error': $v.$error}"></el-input>
+                    <div class="description">{{ $t('customOrder.description') }}</div>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                  </td>
+                  <td>
+                    <el-button class="btn-submit btn-invert " type="text" @click="onSubmit" :disabled="!isFormValid"
+                      :loading="isLoading">
+                      {{ $t('customOrder.send') }}</el-button>
+                  </td>
+                </tr>
+              </tbody>
+
+            </table>
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<ul class="footer-social-links">
+  <li class="social-icons fb" v-if="customData.facebook_link">
+    <a :href="customData.facebook_link" class="fb-link"></a>
+  </li>
+  <li class="social-icons in" v-if="customData.linkedin_link">
+    <a :href="customData.linkedin_link" class="in-link"></a>
+  </li>
+  <li class="social-icons ins" v-if="customData.instagram_link">
+    <a :href="customData.instagram_link" class="ins-link"></a>
+  </li>
+</ul>

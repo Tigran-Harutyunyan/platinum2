@@ -1,0 +1,25 @@
+<div class="products-slider-banner" id="mainSlider">
+     <div class="banner-container" 
+         :class="{'single-image': sliderImages.length<2}">
+      <el-carousel 
+          v-if="sliderImages.length" 
+          :autoplay="false" 
+          trigger="click" 
+          indicator-position="inside" 
+          height="400px" 
+          arrow="never" 
+          class="">
+        <el-carousel-item 
+          v-for="(item,index) in sliderImages" 
+          :key="index" 
+          :style="item.imageStyle">
+          <div class="print-slide-inner">
+            <div class="offer-text">
+               <p v-html="item.description"></p>  
+              <router-link class="btn-link banner-btn" :to="item.productLink" >{{ $t('orderNow') }} </router-link> 
+            </div>
+          </div>
+        </el-carousel-item>
+      </el-carousel>
+    </div> 
+</div>

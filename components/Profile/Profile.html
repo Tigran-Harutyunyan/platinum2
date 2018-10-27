@@ -1,0 +1,53 @@
+<div class="products-main">
+  <div class="bordered-block br-cart">
+    <h3 class="product-category-title">{{ $t('editProfileTitle') }}</h3>
+    <div class="product-details-inner">
+      <div class="sign-up-top">
+        <p>{{ $t('editProfileSubTitle') }} 
+        </p>
+      </div>
+      <form v-on:submit.prevent="updateProfileInfo" @submit="$v.first_name.$touch();$v.last_name.$touch();$v.email.$touch();$v.company_name.$touch(); $v.phone.$touch();">
+        <div class="sign-up-bottom">
+          <div>
+            <table>
+              <tr>
+                <td>{{ $t('signup.first_name') }}</td>
+                <td>
+                  <el-input v-model="first_name" :class="{'has-error': $v.first_name.$error}"></el-input>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ $t('signup.last_name') }}</td>
+                <td>
+                  <el-input v-model="last_name" :class="{'has-error': $v.last_name.$error}"></el-input>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ $t('signup.company') }}</td>
+                <td>
+                  <el-input v-model="company_name" :class="{'has-error': $v.company_name.$error}"></el-input>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ $t('signup.email') }}</td>
+                <td>
+                  <el-input v-model="email" :class="{'has-error': $v.email.$error}"></el-input>
+                </td>
+              </tr>
+              <tr>
+                <td>{{ $t('signup.birthday') }}</td>
+                <td class="custom-picker">
+                  <el-date-picker type="date" placeholder="" v-model="birthday_at" :picker-options="pickerOptions">
+                  </el-date-picker>
+                </td>
+              </tr> 
+            </table>
+            <el-checkbox class="custom-checkbox" v-model="receive_promotions">{{ $t('signup.info3') }}</el-checkbox>
+            <el-button class="btn-submit btn-invert" type="text" @click="updateProfileInfo" :disabled="!isFormValid"
+              :loading="isLoading">{{ $t('signup.info10') }}</el-button>
+          </div> 
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

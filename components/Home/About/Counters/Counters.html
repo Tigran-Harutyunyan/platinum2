@@ -1,0 +1,30 @@
+<div class="counters-place flex-section" id="counters" v-if="customData.statistics">
+  <div class="counter-box">
+    <h6 class="counter-info ci-2">{{ $t('counters.onGoingProjects') }}</h6>
+    <div class="small-triangle1"></div>
+    <div class="icon ico1"></div>
+    <h5 class="counter-nums" id="counter1">{{ customData.statistics.ongoing_projects }}</h5>
+    <h6 class="counter-info ci-1">{{ $t('counters.onGoingProjects') }}</h6>
+  </div>
+  <div class="counter-box">
+    <h6 class="counter-info ci-2">{{ $t('counters.completedProjects') }}</h6>
+    <div class="small-triangle2"></div>
+    <div class="icon ico2"> </div>
+    <h5 class="counter-nums" id="counter2">{{ customData.statistics.completed_projects }}</h5>
+    <h6 class="counter-info ci-1">{{ $t('counters.completedProjects') }}</h6>
+  </div>
+  <div class="counter-box">
+    <h6 class="counter-info ci-2">{{ $t('counters.partners') }} </h6>
+    <div class="small-triangle1"></div>
+    <div class="icon ico3"> </div>
+    <h5 class="counter-nums" id="counter3">{{ customData.statistics.partners }}</h5>
+    <h6 class="counter-info ci-1">{{ $t('counters.partners') }} </h6>
+  </div>
+  <div class="counter-box">
+    <h6 class="counter-info ci-2">{{ $t('counters.yearsOfExperience') }} </h6>
+    <div class="small-triangle2"></div>
+    <div class="icon ico4"> </div>
+    <h5 class="counter-nums" id="counter4">{{ customData.statistics.years_of_experience }}</h5>
+    <h6 class="counter-info ci-1">{{ $t('counters.yearsOfExperience') }} </h6>
+  </div>
+</div>

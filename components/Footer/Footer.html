@@ -1,0 +1,81 @@
+<footer class="products-footer">
+  <div class="footer-inner">
+    <div class="footer-left">
+      <div class="left-wrapper">
+          <div class="social-place">
+              <h3>{{ $t('shoppingFooter.joinOurPage') }}</h3>
+              <social-media></social-media>
+            </div>
+      
+            <div class="subscription-form">
+              <h3>{{ $t('shoppingFooter.letsHelp') }}</h3>
+              <div class="form-container">
+                <form 
+                    v-on:submit.prevent="onSubmit" 
+                    @submit="$v.email.$touch();" class="subscription-form" name="contact_form">
+                  <div class="default-inp-row">
+                    <input 
+                      v-model="email" 
+                      :class="{'has-error': $v.email.$error}" 
+                      class="def-input" type="email" :placeholder="$t('email')" 
+                      name="contact_email">
+                     <el-button class="btn-submit" native-type="submit"  
+                      @click="onSubmit" 
+                      :disabled="isLoading"
+                      :loading="isLoading">{{ $t('subscribe') }}
+                    </el-button>
+                    
+                  </div>
+                </form>
+              </div>
+            </div>
+            <p class="rights-info" v-html="customData.copyright"> 
+            </p>
+      </div>
+    </div>
+    <div class="links-container">
+      <div class="links-column">
+        <h5>{{ $t('shoppingFooter.helpCenter') }}</h5>
+        <ul>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.helpCenter') }}</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.contactUs') }}</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.shippingAndDelivery') }}</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.requestSamples') }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="links-column">
+        <h5>{{ $t('shoppingFooter.whatWeOffer') }}</h5>
+        <ul>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.ourProducts') }}</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.uploadDesigned') }}</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.adWithUs') }}</a>
+          </li>
+        </ul>
+      </div>
+      <div class="links-column">
+        <h5>{{ $t('shoppingFooter.ourCompany') }}</h5>
+        <ul>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.aboutUs') }}</a>
+          </li>
+          <li>
+            <a href="javascript:void(0)">{{ $t('shoppingFooter.carrers') }}</a>
+          </li> 
+        </ul>
+      </div> 
+    </div>
+  </div>
+</footer>

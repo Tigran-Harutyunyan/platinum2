@@ -1,0 +1,66 @@
+<div>
+  <Header />
+  <HeaderCategories /> 
+  <div class="main-section" id="main-section">
+    <BigSlider/>
+    <div class="content-area content-area1">
+      <!-- <div class="large-triangle11" id="triangle11"></div> -->
+      <div class="main-inner">
+        <div class="large-triangle1 triangles"></div>
+        <div class="large-triangle2 triangles"></div>
+        <!-- SERVICES -->
+        <Services/>
+        <!-- ABOUT US -->
+        <About/>
+        <!-- PROJECTS -->
+        <section class="portfolio-section" id="section-portfolio">
+          <!-- <div class="large-triangle6 triangles"></div> -->
+          <div class="section-title-place">
+            <div class="letter-divider">
+              <h6>03</h6>
+            </div>
+            <h5>{{ $t('projects.title') }}</h5>
+            <!-- <a href="javascript:void(0)" class="btn-link link-type-2 see-all-link-portfolio1">{{ $t('seeMore') }}</a> -->
+            <span class="vert-line"></span>
+          </div>
+          <div class="portfolio-inner"></div>
+        </section>
+      </div>
+
+      <!-- PROJECTS SLIDER -->
+      <ProjectsSlider/>
+
+      <div class="content-area">
+        <div class="main-inner z-indexed">
+          <a @click="$router.push({name:'Categories',params: {id:1}})" class="btn-link link-type-2 see-all-link-portfolio2">{{ $t('seeMore') }}</a>
+        </div>
+      </div>
+      <span class="vert-line"></span>
+      <div class="order-stripe">
+        <a href="/#/category/1" class="btn-link">{{ $t('orderOnline') }}</a>
+      </div>
+
+      <div class="main-inner inner-reviews">
+        <Reasons/>
+      </div>
+      
+      <div class="main-inner inner-reviews">
+        <section class="testimonials-section">
+          <div class="section-title-place">
+            <div class="letter-divider">
+              <h6>05</h6>
+            </div>
+            <h5>{{ $t('staff') }}</h5>
+            <span class="vert-line"></span>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+  <div class="parallax-bg" id="parallax1"></div>
+  <div class="main-section" id="staff-section">
+    <Staff/>
+    <Contact locale="storage.locale"></Contact>
+    <footer class="footer"></footer>
+  </div>
+</div>

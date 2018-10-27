@@ -1,0 +1,42 @@
+.up-demo1 {
+    margin-bottom: 15px;
+  }
+  
+  .el-upload__tip {
+    text-align: left;
+    color: #878787;
+    margin-top: 20px
+  }
+  
+  .uploads-container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 330px;
+  }
+  
+  .el-upload {
+    display: block;
+  }
+  
+  .upload-description {
+    padding-top: 9px;
+    font-size: 12px;
+    font-family: Tahoma;
+    text-align: left;
+    line-height: 16px;
+    color: #878787
+  }
+  
+  .upload-img {
+    width: 150px;
+    height: 150px;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-color: white
+  }
+  @media only screen and (max-width: 1115px) {
+    .upload-img {
+      width: 144px;
+      height: 144px;}
+  }
