@@ -59,6 +59,7 @@ export default {
           dots: false,
           infinite: true,
           speed: 300,
+          rows : 0,
           slidesToShow: slidesToShow,
           slidesToScroll: 1,
           draggable: false,

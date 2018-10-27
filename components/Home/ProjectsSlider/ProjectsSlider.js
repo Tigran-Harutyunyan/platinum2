@@ -25,6 +25,7 @@ export default {
       inserted: function (el) { 
         $(el).slick({
           autoplay: true,
+          rows : 0,
           dots: false,
           infinite: true,
           speed: 300,
