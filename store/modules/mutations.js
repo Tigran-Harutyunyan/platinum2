@@ -65,7 +65,7 @@ export default {
     state.orders = items;
   },
 
-  SET_USER: (state, payload) => {
+  SET_USER: (state, payload) => { 
     state.user = payload;
   },
 

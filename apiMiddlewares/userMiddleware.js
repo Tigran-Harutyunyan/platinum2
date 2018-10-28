@@ -20,12 +20,11 @@
       }, 
    },
    toBackEnd: {
-     appendToken() {
-       storage.getToken();
+     appendToken(token) { 
        let formData = new FormData();
-       formData.append('token', storage.getToken());
+       formData.append('token', token);
        return formData;
-     },
+     }
    }
  };
 

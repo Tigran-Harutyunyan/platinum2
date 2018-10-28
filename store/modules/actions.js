@@ -1,5 +1,6 @@
 import productsApi from '../../api/productsApi';
 import generalApi from '../../api/generalApi';
+import userApi from '../../api/userApi';
 import utils from '../../utils'; 
  
 export default  {
@@ -274,14 +275,14 @@ export default  {
   setToken: ({
     commit
   }, payload) => {
-    storage.setToken(payload);
+    //storage.setToken(payload);
     commit('SET_TOKEN', payload)
   },
 
   deleteToken: ({
     commit
   }, payload) => {
-    storage.deleteToken();
+    //storage.deleteToken();
     commit('DELETE_TOKEN')
   },
 
@@ -292,7 +293,7 @@ export default  {
     return new Promise((resolve, reject) => {
 
       userApi.login(data).then(
-        (response) => {
+        (response) => { 
           if (response.success) {
             commit('SET_USER', response);
             if (response.token) {
@@ -494,9 +495,9 @@ export default  {
     commit,
     state
   }) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => { 
 
-      userApi.getBasketProducts().then(
+      userApi.getBasketProducts(state.token).then(
         (response) => {
           if (Array.isArray(response)) {
             commit('UPDATE_CART_ITEMS', response);

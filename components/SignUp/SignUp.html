@@ -12,79 +12,81 @@
         <div class="sign-up-bottom">
           <div class="left">
             <table class="table-2">
-              <tr>
-                <td>{{ $t('signup.first_name') }}</td>
-                <td>
-                  <el-input 
-                    v-model="first_name" 
-                    :class="{'has-error': $v.first_name.$error}">
-                  </el-input>
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.last_name') }}</td>
-                <td>
-                  <el-input 
-                    v-model="last_name" 
-                    :class="{'has-error': $v.last_name.$error}">
-                  </el-input>
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.company') }}</td>
-                <td>
-                  <el-input 
-                    v-model="company_name">
-                  </el-input> 
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.email') }}</td>
-                <td>
-                  <el-input 
-                    v-model="email" 
-                    :class="{'has-error': $v.email.$error}">
-                  </el-input>
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.password') }}</td>
-                <td>
-                  <el-input type="password" 
-                    :placeholder="$t('signup.info9')" 
-                    v-model="password" 
-                    :class="{'has-error': $v.password.$error}">
-                  </el-input>
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.confirm_password') }}</td>
-                <td>
-                  <el-input type="password" 
-                    v-model="passwordConfirm"  
-                    :placeholder="$t('signup.info9')" 
-                    :class="{'has-error': $v.passwordConfirm.$error}">
-                  </el-input>
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.birthday') }}</td>
-                <td class="custom-picker">
-                  <el-date-picker type="date" 
-                    v-model="birthday_at"  placeholder="" 
-                    :picker-options="pickerOptions1">
-                  </el-date-picker>
-                </td>
-              </tr>
-              <tr>
-                <td>{{ $t('signup.phone') }}</td>
-                <td class="custom-picker">
-                    <el-input type="text" 
-                      v-model="phone" 
-                      :class="{'has-error': $v.phone.$error}">
-                    </el-input> 
-                </td>
-              </tr>
+             <tbody>
+                <tr>
+                    <td>{{ $t('signup.first_name') }}</td>
+                    <td>
+                      <el-input 
+                        v-model="first_name" 
+                        :class="{'has-error': $v.first_name.$error}">
+                      </el-input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.last_name') }}</td>
+                    <td>
+                      <el-input 
+                        v-model="last_name" 
+                        :class="{'has-error': $v.last_name.$error}">
+                      </el-input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.company') }}</td>
+                    <td>
+                      <el-input 
+                        v-model="company_name">
+                      </el-input> 
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.email') }}</td>
+                    <td>
+                      <el-input 
+                        v-model="email" 
+                        :class="{'has-error': $v.email.$error}">
+                      </el-input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.password') }}</td>
+                    <td>
+                      <el-input type="password" 
+                        :placeholder="$t('signup.info9')" 
+                        v-model="password" 
+                        :class="{'has-error': $v.password.$error}">
+                      </el-input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.confirm_password') }}</td>
+                    <td>
+                      <el-input type="password" 
+                        v-model="passwordConfirm"  
+                        :placeholder="$t('signup.info9')" 
+                        :class="{'has-error': $v.passwordConfirm.$error}">
+                      </el-input>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.birthday') }}</td>
+                    <td class="custom-picker">
+                      <el-date-picker type="date" 
+                        v-model="birthday_at"  placeholder="" 
+                        :picker-options="pickerOptions1">
+                      </el-date-picker>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{ $t('signup.phone') }}</td>
+                    <td class="custom-picker">
+                        <el-input type="text" 
+                          v-model="phone" 
+                          :class="{'has-error': $v.phone.$error}">
+                        </el-input> 
+                    </td>
+                  </tr>
+             </tbody>
             </table>
           </div>
           <div class="right"> 

@@ -214,7 +214,7 @@ export default {
             });
 
             this.$router.push({
-              name: 'Cart'
+              path: '/cart'
             });
           }
         }).catch((error) => {

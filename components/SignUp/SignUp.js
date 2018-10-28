@@ -51,13 +51,10 @@ export default {
         if (response.success) {
           this.$emit('LoginSuccess', response);   
           this.$router.push({
-            name: 'Categories',
-            params: {
-              id: 1
-            }
+            path: '/category/1'
           })
         } 
-      }).catch((error) => {});
+      }).catch(() => {});
     },
     onSubmitSignup() {
       if (!this.isLoading && this.isFormValid) {
