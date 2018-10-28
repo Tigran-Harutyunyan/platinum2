@@ -46,7 +46,7 @@ export default {
           break;
         case 'signUp':
           this.$router.push({
-            name: 'SignUp'
+            path: '/signup'
           });
           break;
         case 'logout':
@@ -54,30 +54,27 @@ export default {
           break;
         case 'design':
           this.$router.push({
-            name: 'Design'
+            path: '/design'
           });
           break;
         case 'categories':
           this.$router.push({
-            name: 'Categories',
-            params: {
-              id: 1
-            }
+            path: '/category/1'
           });
           break;
         case 'Orders':
           this.$router.push({
-            name: 'Orders'
+            path: '/orders'
           });
           break;
         case 'changePassword':
           this.$router.push({
-            name: 'changePassword'
+            path: '/change-password'
           });
           break;
         case 'profile':
           this.$router.push({
-            name: 'profile'
+            path: '/profile'
           });
           break;
       }
@@ -128,7 +125,7 @@ export default {
         }
         this.$store.dispatch('setScrollParams', params);
         this.$router.push({
-          name: 'Home'
+          path: '/home'
         });
       }
     }
