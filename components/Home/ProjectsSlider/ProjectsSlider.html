@@ -1,20 +1,19 @@
 <div class="sliders-place noselect projects-slider-container">
      
-  <div  v-carousel v-if="projectsSliderImages.length>0">
+  <div  v-carousel v-if="projects.length>0">
     <div class="box"  
         @click="openPopup(index)" 
-        v-for="(item, index) in projectsSliderImages" :key="index">
+        v-for="(item, index) in projects" :key="index">
         <img class="open-popup-link mfp-prevent-close" 
             :src="item.thumbnail" 
             :alt="item.title"> 
       </div> 
   </div>   
-  <!-- <div class="loop"></div> -->
-  
+   
   <CarouselPopup 
       v-if="dialogTableVisible"
       :index="index"  
-      :items="projectsSliderImages"
+      :items="projects"
       @close="dialogTableVisible=false">
   </CarouselPopup>
 

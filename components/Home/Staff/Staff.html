@@ -1,7 +1,7 @@
 <div class="parallax-section" id="parallax-trigger"> 
 
-    <div v-carousel  class="staff-slider"  v-if="staffData.length">
-        <div class="swiper-slide" v-for="(item, index) in staffData" :key="index">
+    <div v-carousel  class="staff-slider"  v-if="staff.length">
+        <div class="swiper-slide" v-for="(item, index) in staff" :key="index">
             <figure class="a-info-left">
                 <img :src="item.image" :alt="item.name">
                 <figcaption>

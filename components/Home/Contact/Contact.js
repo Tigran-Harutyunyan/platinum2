@@ -2,8 +2,7 @@ import {
   required,
   minLength,
   email
-} from 'vuelidate/lib/validators';
-import { mapGetters } from 'vuex';
+} from 'vuelidate/lib/validators'; 
 import PartnersSlider from "../PartnersSlider/PartnersSlider.vue";
 import SocialMedia from "../SocialMedia/SocialMedia.vue";
 // import utils from '../../../utils'; 
@@ -17,20 +16,15 @@ export default {
       loading: false
     }
   },
-  props: ['locale'],
-  computed: {
-    customData() {
-      return this.$store.getters.getCustomData;
-    },
+  props: ['locale','customData'],
+  computed: { 
     isSendEmailFormInvalid(){ 
       return this.$v.subject.$invalid ||  this.$v.email.$invalid  || this.$v.$invalid 
     }
-  },
-  mounted() {
-    this.$store.dispatch('getCustomData');
-  },
+  }, 
   methods: {
     onSubmitSubscribe() {
+
       if (!this.loading && !this.$v.subscription_email.$invalid) {
         this.loading = true;
         this.$store.dispatch('subscribe', {
@@ -63,6 +57,7 @@ export default {
         }); 
       }
     },
+    
     onSubmit() {
       if (!this.loading && !this.isSendEmailFormInvalid) {
         this.loading = true;

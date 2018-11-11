@@ -2,15 +2,11 @@ export default {
   computed: {
     swiper() {
       return this.$refs.mySwiper.swiper
-    },
-    staffData() {
-      return this.$store.getters.getStaffData;
     }
   },
-  mounted() {
-    let data = this.$store.getters.getStaffData;
-    if (!data) {
-      this.$store.dispatch('getStaff');
+  props: {
+    staff: {
+      type: Array
     }
   },
   directives: {

@@ -45,6 +45,7 @@
       this.isLogoActive = true;
     }, 2000);
    },
+   
    mounted() {
    
      EventBus.$on('slideChange', (currentSlide) => {

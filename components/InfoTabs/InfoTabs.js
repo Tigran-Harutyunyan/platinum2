@@ -6,8 +6,7 @@ export default {
   },
   data() {
     return {
-      activeTab: 1,
-      links: [],
+      activeTab: 1, 
       tabs: [{
           id: 1,
           name: 'uploadSamples',
@@ -21,6 +20,11 @@ export default {
       ]
     }
   },
+  props: {
+    links: {
+      type: Array
+    }
+  },
   computed: {
     locale: {
       get: function () {
@@ -32,16 +36,7 @@ export default {
   methods: {
     onTabChange(value) {
       this.activeTab = value;
-    },
-    getSamples() {
-      this.$store.dispatch('getSamples').then((response) => { 
-        if(Array.isArray(response)){
-          this.links = response;
-        }
-      }).catch((error) => {});
-    }
+    }  
   },
-  mounted() {
-    this.getSamples();
-  }
+ 
 } 

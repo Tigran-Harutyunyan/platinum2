@@ -1,25 +1,23 @@
 import CarouselPopup from '../../commonComponents/CarouselPopup/CarouselPopup.vue'; 
 export default {
+
   data() {
     return { 
       index: 0,
       dialogTableVisible: false,
     }
   },
-  computed: {
-    projectsSliderImages(){
-      return this.$store.getters.projectsSliderImages;
+
+  props: {
+    projects:{
+      type: Array
     }
   },
+
   components: {
     CarouselPopup
   },
-  created() {
-    let data = this.$store.getters.projectsSliderImages;
-    if (!data.length) {
-      this.$store.dispatch('getProjectSliderImages');
-    }
-  },
+ 
   directives: {
     carousel: {
       inserted: function (el) { 
