@@ -22,14 +22,17 @@ const generalMiddleware = {
       return images;
     },
 
-    getSliderImages(images) {
-      images.forEach(element => {
-        element.imageStyle = {
-          'background-image': `url(${config.imgBaseUrl}${element.image})`
-        }
-        element.image = `${config.imgBaseUrl}${element.image}`;
-        element.productLink = `/product/${element.product_id}`;
-      });
+    getSliderImages(images) { 
+      if (Array.isArray(images)){
+        images.forEach(element => {
+          element.imageStyle = {
+            'background-image': `url(${config.imgBaseUrl}${element.image})`
+          }
+          element.image = `${config.imgBaseUrl}${element.image}`;
+          element.productLink = `/product/${element.product_id}`;
+        });
+      }
+      
       return images;
     },
 
@@ -56,12 +59,14 @@ const generalMiddleware = {
       return images;
     },
 
-    getSamples(images) {
-      images.forEach(element => {
-        element.image = `${config.imgBaseUrl}${element.image}`;
-        element.pdf = `${config.imgBaseUrl}${element.pdf}`;
-      });
-      return images;
+    getSamples(items) { 
+      if (Array.isArray(items)){
+        items.forEach(element => {
+          element.image = `${config.imgBaseUrl}${element.image}`;
+          element.pdf = `${config.imgBaseUrl}${element.pdf}`;
+        });
+      } 
+      return items;
     },
 
     getAdvertisements(response) {

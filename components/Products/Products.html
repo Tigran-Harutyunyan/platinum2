@@ -1,16 +1,16 @@
 <div class="products-main">
   <h3 class="product-category-title">{{ categoryName }}</h3>
  <!--  <Preloader v-if="isLoading" class="prelaoder"></Preloader> -->
-  <div class="product-items">
+  <div class="product-items"> 
     <router-link class="product-item"   
-        :to="product.href"  
+        :to="product.href"
         v-for="(product,index) in productList" :key="index">
         <img :src="product.image">
-        <div class="product-descr">
-            <span class="product-name">{{ product.name }}</span> 
-            <div class="product-pricing" v-html="product.short_description"> 
+        <div class="product-descr" v-if="product[0]">
+            <span class="product-name">{{ product[0].name }}</span> 
+            <div class="product-pricing" v-html="product[0].short_description"> 
             </div>
         </div>
-    </router-link> 
+    </router-link>  
   </div>
 </div>

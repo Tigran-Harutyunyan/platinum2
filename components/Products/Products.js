@@ -10,22 +10,16 @@ export default {
       categoryName: '',
       isLoading: true
     }
-  },
-/*   fetch ({ store, params }) {
-    return axios.get('http://my-api/stars')
-    .then((res) => {
-      store.commit('setStars', res.data)
-    })
-  }, */
+  }, 
   components: {
     Preloader
   },
   watch: {
     '$route'(to, from) {
-      this._filterProducts();
+      //this._filterProducts();
     },
     products(newVal, oldVal) {
-      this._filterProducts();
+      //this._filterProducts();
     }
   },
   computed: {
@@ -37,20 +31,16 @@ export default {
     //this._filterProducts(); 
   },
 
- async asyncData (params, error, payload) { 
-    return new Promise((resolve, reject) => { 
-      if(payload) {
-        return {
-          productList: payload
-        }
-      }
-    /*   ProductsApi.getProducts('en').then(response => { 
+ async asyncData (context, error, payload) { 
+    return new Promise((resolve, reject) => {  
+      ProductsApi.getProductsByCategoryId(context.params.id,'en').then(response => {  
         resolve({
-          productList : response
+          productList : response[0] ? response[0].products: [],
+          categoryName :  response[0] ? response[0].name: "",
         });  
       }).catch(function (error) {
         reject(error);
-      }) */
+      })  
     });
   },
 

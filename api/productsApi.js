@@ -16,6 +16,13 @@ const productsApi = {
     });
   },
 
+  getProductsByCategoryId(id,locale) {  
+    return api.get(`getProductsByCategoryId?id=${id}&lang=${locale}`).then(res => {
+      res = productsMiddleware.fromBackEnd.parseCategoryProducts(res);
+      return res;
+    });
+  },
+
   getSearchResults(params, locale) {
     return api.post(`search?lang=${locale}`,params).then(res => {
       res = productsMiddleware.fromBackEnd.parseSearchResults(res);

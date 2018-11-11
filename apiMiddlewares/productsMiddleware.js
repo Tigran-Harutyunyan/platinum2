@@ -5,6 +5,7 @@ import utils from '../utils';
 
 const middleware = {
   fromBackEnd: {
+
     parseProducts(products) {
       for (const key in products) {
         if (products.hasOwnProperty(key)) {
@@ -19,10 +20,27 @@ const middleware = {
             }
           });
         }
-      } 
+      }
       return products;
     },
+
+    parseCategoryProducts(response) {
+
+      let products = response[0].products;
+      products.forEach(product => {
+        product.href = `/product/${product[0].id}`;
+        if (product.images.length) {
+          product.image = `${config.imgBaseUrl}${product.images[0].image}`
+        } else {
+          product.image = '../assets/img/no-image.svg'
+        }
+      });
+
+      return response;
+    },
+
     parseProduct(response) {
+
       if (response.images) {
         response.images.forEach(element => {
           element.image = `${config.imgBaseUrl}${element.image}`;
@@ -49,12 +67,12 @@ const middleware = {
         return 0;
       });
 
-      response.sortedProperties = sortedProperties; 
+      response.sortedProperties = sortedProperties;
       return response;
     },
 
     parseSearchResults(response) {
-      let results = []; 
+      let results = [];
       if (response.categories && Array.isArray(response.categories)) {
         response
           .categories

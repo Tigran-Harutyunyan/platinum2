@@ -3,15 +3,17 @@ import {
 } from '../event-bus.js';
 import Preloader from '../commonComponents/Preloader/Preloader.vue';
 import Uploader from "./FIleUploader/FIleUploader.vue";
-import ProductImages from "./ProductImages/ProductImages.vue"; 
- 
+import ProductImages from "./ProductImages/ProductImages.vue";   
 import ProductsApi from '../../api/productsApi';
+
 export default {
   head () {
     return {
       title: 'Product details',
       meta: [ 
-        { hid: 'product-name', name: this.product ? this.product[0].name : '', content: this.product ? this.product[0].description : ''}
+        { hid: 'product-name', 
+          name: this.product ? this.product[0].name : '', 
+          content: this.product ? this.product[0].description : ''}
       ]
     } 
   }, 
@@ -53,9 +55,11 @@ export default {
     },
   },
 
-  async asyncData (context) { 
+  async asyncData ({ params, error, payload }) {  
+    /* if (payload) return { product: payload } 
+    else   */
     return new Promise((resolve, reject) => { 
-      ProductsApi.getProductById(context.params.id, 'en').then(response => { 
+      ProductsApi.getProductById(params.id, 'en').then(response => { 
         resolve({
           product : response
         });  
