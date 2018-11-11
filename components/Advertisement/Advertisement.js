@@ -1,5 +1,7 @@
 import CarouselPopup from '../commonComponents/CarouselPopup/CarouselPopup.vue';
 import Preloader from '../commonComponents/Preloader/Preloader.vue';
+import generalApi from '../../api/generalApi';
+
 export default {
   data() {
     return {
@@ -11,38 +13,31 @@ export default {
       isLoading: true
     }
   },
+  async asyncData (context, error, payload) { 
+   
+    return new Promise((resolve, reject) => {  
+      generalApi.getAdvertisements('en').then(response => {   
+        let audioAds; 
+        for (const key in response) { 
+          if (response.hasOwnProperty(key) && key == 'audio') { 
+              audioAds = response[key];  
+              delete response[key];
+              break; 
+          }
+        }
+        resolve({
+          adCategories : response,
+          audioAds: audioAds
+        });  
+      }).catch(function (error) {
+        reject(error);
+      })  
+    });
+  }, 
   components: {
     CarouselPopup,
     Preloader
-  },
-  watch: {
-    advertisements: {
-      handler: function (ads) {
-        for (const key in ads) {
-          if (ads.hasOwnProperty(key)) {
-            if (key == 'audio') {
-              this.audioAds = ads[key];
-              delete ads[key];
-              break;
-            }
-          }
-        }
-        this.isLoading = false;
-        this.adCategories = ads;
-      }
-    }
-  },
-  computed: {
-    advertisements: {
-      get: function () {
-        return this.$store.getters.getAdvertisements;
-      },
-      set: function () {}
-    }
-  },
-  created() {
-    this.$store.dispatch('getAdvertisements');
-  },
+  }, 
   methods: {
     openPopup(index, category) {
       this.index = index;
@@ -109,5 +104,5 @@ export default {
         });
       },
     }
-  },
+  }
 }

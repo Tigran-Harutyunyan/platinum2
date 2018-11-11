@@ -4,6 +4,7 @@ import PortfolioPopup from './PortfolioPopup/PortfolioPopup.vue';
 import _  from 'lodash.debounce';
 import Preloader from '../commonComponents/Preloader/Preloader.vue';
 import HeaderCategories from '../MobileProductList/MobileProductList.vue';
+import generalApi from '../../api/generalApi';
 
 if (process.browser) { 
   
@@ -11,30 +12,29 @@ if (process.browser) {
 }
 
 export default {
+  
   data() {
     // called every time before loading the component
     return {
       counter: 0,
       currentSlideID: '',
-      showContent: false,
+      showContent: true,
       loading: true,
       isScrolled: false,
       showCategoryDropdown: false
     }
   },
-
-  watch: {
-    completedWorks() {
-      this.loading = false;
-      this.showContent = true;
-    }
-  },
-  
-  computed: {
-    completedWorks() {
-      return this.$store.getters['getCompletedWorks']
-    }
-  },
+  async asyncData (context, error, payload) { 
+    return new Promise((resolve, reject) => {  
+      generalApi.getCompletedWorks('en').then(response => {   
+        resolve({
+          completedWorks : response
+        });  
+      }).catch(function (error) {
+        reject(error);
+      })  
+    });
+  }, 
   methods: {
     toggleCategoryDropdown() {
       this.showCategoryDropdown = !this.showCategoryDropdown;
@@ -61,10 +61,8 @@ export default {
       this.currentSlideID = -1;
     }
   },
-  mounted() {
-    this.$store.dispatch('getCompletedWorks');
-    //document.getElementById("scrolledDiv").addEventListener('scroll', this.startScrolling);
-   
+  mounted() {  
+    //document.getElementById("scrolledDiv").addEventListener('scroll', this.startScrolling); 
   },
   destroy() {
     window.removeEventListener('scroll');

@@ -1,8 +1,8 @@
 <div class="portfolio" >
   <Header />
   <HeaderCategories /> 
-  <Preloader v-if="loading" class="spinner"></Preloader>
-  <div class="main-section content-area" :class="{'is-visible':showContent}">  
+  <!-- <Preloader v-if="loading" class="spinner"></Preloader> -->
+  <div class="main-section content-area is-visible" :class="{'is-visible':showContent}">  
     <no-ssr>
         <div class="portfolio-grid">
             <isotope class="grid"
@@ -27,10 +27,9 @@
                   </div> 
                 </div> 
             </isotope>
-          </div>
-    </no-ssr>
-  
-<!--     <Footer /> -->
+        </div>
+  </no-ssr> 
+  <!--<Footer /> -->
   </div>
   
   <PortfolioPopup id="scrolledDiv"
