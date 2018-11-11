@@ -3,8 +3,18 @@ import {
 } from '../event-bus.js';
 import Preloader from '../commonComponents/Preloader/Preloader.vue';
 import Uploader from "./FIleUploader/FIleUploader.vue";
-import ProductImages from "./ProductImages/ProductImages.vue";
+import ProductImages from "./ProductImages/ProductImages.vue"; 
+ 
+import ProductsApi from '../../api/productsApi';
 export default {
+  head () {
+    return {
+      title: 'Product details',
+      meta: [ 
+        { hid: 'product-name', name: this.product ? this.product[0].name : '', content: this.product ? this.product[0].description : ''}
+      ]
+    } 
+  }, 
   data() {
     return {
       fileList1: [],
@@ -42,14 +52,37 @@ export default {
       return this.$store.getters.getToken;
     },
   },
+
+  async asyncData (context) { 
+    return new Promise((resolve, reject) => { 
+      ProductsApi.getProductById(context.params.id, 'en').then(response => { 
+        resolve({
+          product : response
+        });  
+      }).catch(function (error) {
+        reject(error);
+      })
+    });
+  },
+
   watch: {
     '$route'(to, from) {
       this.fileList1 = [];
-      this.fileList2 = [];
-      this.getProductById();
+      this.fileList2 = []; 
+      this.isLoading = true; 
+    },
+    product(){
+      this._inits();
     }
   },
   methods: {
+    _inits(){
+      this.isLoading = false; 
+      this.showPriceTotal = Object.keys(this.product.properties).length > 0;
+      this.copyOfProduct = JSON.parse(JSON.stringify(this.product));
+      this.isDirty = false;
+    },
+
     onFileChange(data) {
       if (data.type == 1) {
         this.fileList1 = data.list
@@ -57,16 +90,17 @@ export default {
         this.fileList2 = data.list;
       }
     },
+
     onDropDownChange() {
-      let properties = this.product.sortedProperties;
-      let quantityID = '';
+      let properties = this.product.sortedProperties; 
       this.selectedOptions = []; 
       this.isDirty = true;
+      this.isOneSide = false;
       properties.forEach(element => {
         if (element.selected != "") {
           element.options.forEach(option => {
-            if (option.one_side){
-              this.isOneSide = true;
+            if (option.one_side && (option.id ==  element.selected)){
+              this.isOneSide = true; 
             }
             if (option.quantity) {
               this.quantity = element.selected
@@ -233,32 +267,7 @@ export default {
 
 
     },
-
-    getProductById() {
-      this.$store.dispatch('getProductById', {
-        id: this.$route.params.id
-      }).then((response) => {
-        this.isLoading = false;
-            
-        if (response.error){
-          this.$notify({ 
-            message: response.message ? response.message : "Error getting product info",
-            position: "bottom-right",
-            type: "error"
-          });
-        }
-
-        if (response[0]) {
-          this.product = response;
-          this.isLoading = false;
-          this.showPriceTotal = Object.keys(this.product.properties).length > 0;
-          this.copyOfProduct = JSON.parse(JSON.stringify(this.product));
-          this.isDirty = false;
-        }
-      }).catch((error) => {
-        this.isLoading = false;
-      });
-    },
+ 
     reset() {
       this.product = JSON.parse(JSON.stringify(this.copyOfProduct));
       this.isDirty = false;
@@ -267,10 +276,9 @@ export default {
     },
 
   },
-  created() {
-    this.getProductById();
-  },
+ 
   mounted() {
+    this._inits();
     EventBus.$on('authChanged', () => {
       this.reset();
     });

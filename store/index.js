@@ -7,17 +7,16 @@
  const store = () => {
    return new Vuex.Store({
      state: () => ({
-       locales: [ 
-        {
-          localeName: 'ՀԱՅ',
-          activeLocale: false,
-          locale: 'am'
-        },
-        {
-          localeName: 'ENG',
-          activeLocale: false,
-          locale: 'en'
-        }
+       locales: [{
+           localeName: 'ՀԱՅ',
+           activeLocale: false,
+           locale: 'am'
+         },
+         {
+           localeName: 'ENG',
+           activeLocale: false,
+           locale: 'en'
+         }
        ],
        locale: '',
        data: {},
@@ -34,8 +33,14 @@
        scrollParams: '',
        sidebarProducts: '',
        advertisements: [],
+       cart: '',
+       orders: '',
+       user: {},
+       locale: '',
+       token: '',
+       dropdownOpened: false,
      }),
-     mutations, 
+     mutations,
      actions,
      getters
    })

@@ -1,18 +1,12 @@
 import api from './api';
  
-import userMiddleware from '../apiMiddlewares/userMiddleware';
-let lang = 'en';
+import userMiddleware from '../apiMiddlewares/userMiddleware'; 
 
 const userApi = {
+
   login(params) {
-    let url = 'login?';
-    return api.post(url, params).then(res => {
-      if (res.success) {
-        storage.setUser(res);
-        if(res.token){
-          storage.setToken(res.token);
-        }
-      }
+    let url = 'login?'; 
+    return api.post(url, params).then(res => { 
       return res;
     });
   },
@@ -86,9 +80,10 @@ const userApi = {
     });
   },
 
-  getBasketProducts() {
+  getBasketProducts(token) {
     let url = 'getBasketProducts?';
-    let formData = userMiddleware.toBackEnd.appendToken();
+    let formData = userMiddleware.toBackEnd.appendToken(token);
+    
     return api.post(url, formData).then(response => {
       if (Array.isArray(response)) {
         let data = userMiddleware.fromBackEnd.getBasketProducts(response);

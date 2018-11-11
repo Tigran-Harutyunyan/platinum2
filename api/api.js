@@ -2,7 +2,13 @@
 import {
   config
 } from './config';
+
 import axios from 'axios';
+
+import {
+  EventBus
+} from '../components/event-bus';
+
 axios.interceptors.response.use(function (response) { 
   if (response.data.error && response.data.message === "Invalid token") {
     EventBus.$emit('logout');
@@ -37,15 +43,17 @@ const api = {
       }
     }
       
-    if (url.includes('addProductToBasket') || url.includes('logout')  || url.includes('getBasketProducts') || url.includes('removeBasketProduct') || url.includes('customOrder') || url.includes('getProductPrice') || url.includes('getOrders') || url.includes('moveProductToOrders'))  {
-      
+    if (url.includes('addProductToBasket') || url.includes('logout')  || 
+        url.includes('getBasketProducts') || url.includes('removeBasketProduct') || 
+        url.includes('customOrder') || url.includes('getProductPrice') || 
+        url.includes('getOrders') || url.includes('moveProductToOrders'))  { 
       configs.data = params;
     } else {
       configs.params = params;
     }
-
+     
     return new Promise((resolve, reject) => {
-      axios(configs).then(response => {
+      axios(configs).then(response => { 
         resolve(response.data);
       }).catch(function (error) {
         reject(error);

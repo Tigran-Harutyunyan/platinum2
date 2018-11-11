@@ -1,9 +1,9 @@
 import CartTotals from './CartTotals/CartTotals.vue';
 import CartItemActions from './CartItemActions/CartItemActions.vue';
-import Preloader from '../../commonComponents/Preloader/Preloader.vue';
+import Preloader from '../commonComponents/Preloader/Preloader.vue';
 import {
   EventBus
-} from '../../event-bus.js';
+} from '../event-bus.js';
 export default {
   data() {
     return {
@@ -126,7 +126,7 @@ export default {
           EventBus.$emit('orderIsPlaced');
 
           this.$router.push({
-            name: 'Orders'
+            path: '/orders'
           });
 
         } else {

@@ -1,4 +1,5 @@
 import LanguageSwitcher  from '../LanguageSwitcher/LanguageSwitcher.vue';
+
 export default {
   data() {
     return {
@@ -6,10 +7,13 @@ export default {
     }
   },
   props: ['isAuthed'],
+
   components: {
     LanguageSwitcher
   },
+
   methods: {
+
     perform(action) {
       switch (action) {
         case 'login': 
@@ -24,6 +28,7 @@ export default {
       }
       this.isActive = false
     },
+
     goTo(section) {
       let param = '';
       let customOffset = 0;
@@ -55,6 +60,7 @@ export default {
         default:
           param = '';
       }
+
       this.isActive = false;
 
       if (this.$route.name === 'Home') {
@@ -68,9 +74,10 @@ export default {
         }
         this.$store.dispatch('setScrollParams', params);
         this.$router.push({
-          name: 'Home'
+          path: '/home'
         });
       }
+
     }
   }
 }

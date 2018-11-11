@@ -4,14 +4,16 @@ import {
   email,
   sameAs
 } from 'vuelidate/lib/validators';
+
 import {
   EventBus
 } from '../event-bus.js';
+
 export default {
   data() {
     return {
-      email: "",
-      password: "",
+      email: "tigran@mail.ru",
+      password: "tigran",
       isLoading: false,
       dialogTableVisible: true,
       recoveryMail: '',
@@ -29,11 +31,14 @@ export default {
   methods: {
     login() {
       this.isLoading = true;
+
       this.$store.dispatch('login', {
         email: this.email,
         password: this.password
       }).then((response) => {
+
         this.isLoading = false;
+
         if (response.error) {
           this.$notify({
             title: 'Login',
@@ -42,13 +47,29 @@ export default {
             type: "error"
           });
         }
+
         if (response.success) {
-          this.$emit('LoginSuccess', response);  
-          this.close();
+          this.$cookiz.set('user', response, {
+            path: '/',
+            maxAge: 60 * 60 * 24 * 7
+          });
+
+          if (response.token) {
+            this.$cookiz.set('token', response.token, {
+              path: '/',
+              maxAge: 60 * 60 * 24 * 7
+            });
+          }
+
+          this.$emit('LoginSuccess', response);
+
+          this.close(); 
         }
         EventBus.$emit('authChanged');
       }).catch((error) => {
+
         this.isLoading = false;
+
         this.$notify({
           title: 'Login',
           message: error ? error : 'Failed to login',
@@ -57,8 +78,11 @@ export default {
         });
       });
     },
+
     recoverPass() {
+
       this.isLoading = true;
+      
       this.$store.dispatch('recover', {
         email: this.recoveryMail
       }).then((response) => {

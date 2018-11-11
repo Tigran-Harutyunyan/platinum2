@@ -1,4 +1,5 @@
 import Preloader from '../commonComponents/Preloader/Preloader.vue';
+import ProductsApi from '../../api/productsApi';
 export default {
   validate({ params }) {
     return !isNaN(+params.id)
@@ -10,6 +11,12 @@ export default {
       isLoading: true
     }
   },
+/*   fetch ({ store, params }) {
+    return axios.get('http://my-api/stars')
+    .then((res) => {
+      store.commit('setStars', res.data)
+    })
+  }, */
   components: {
     Preloader
   },
@@ -27,8 +34,26 @@ export default {
     }
   },
   mounted() { 
-    this._filterProducts(); 
+    //this._filterProducts(); 
   },
+
+ async asyncData (params, error, payload) { 
+    return new Promise((resolve, reject) => { 
+      if(payload) {
+        return {
+          productList: payload
+        }
+      }
+    /*   ProductsApi.getProducts('en').then(response => { 
+        resolve({
+          productList : response
+        });  
+      }).catch(function (error) {
+        reject(error);
+      }) */
+    });
+  },
+
   methods: {
     _filterProducts() {
       this.productList = [];
@@ -42,6 +67,7 @@ export default {
         }
       }
       this.isLoading = false;
+      this.$forceUpdate;
     }
   }
 }

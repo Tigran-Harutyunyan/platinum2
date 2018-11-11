@@ -1,9 +1,12 @@
+const axios = require('axios');
+
 module.exports = {
+  mode: 'universal',
   /*
    ** Headers of the page
    */
   head: {
-    title: 'i18n-noroutedemo',
+    title: 'platinum',
     meta: [{
         charset: 'utf-8'
       },
@@ -11,10 +14,15 @@ module.exports = {
         name: 'viewport',
         content: 'width=device-width, initial-scale=1'
       },
+      /*    {
+           hid: 'description',
+           name: 'description',
+           content: 'Nuxt.js project'
+         }, */
       {
-        hid: 'description',
-        name: 'description',
-        content: 'Nuxt.js project'
+        script: [{
+          src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'
+        }]
       }
     ],
     link: [{
@@ -32,6 +40,7 @@ module.exports = {
   /*
    ** Build configuration
    */
+
   modules: [
     ['cookie-universal-nuxt', {
       alias: 'cookiz'
@@ -87,4 +96,35 @@ module.exports = {
     'element-ui/lib/theme-chalk/index.css',
     '@/assets/sass/styles.scss'
   ],
+  generate: {
+
+    routes: function () {
+      return axios.get('http://api.platinuminkdesign.com/api/getProductsList?lang=en').then(res => {
+        console.log('STATUS' + res.status)
+        console.log('DATA' + res.data)
+
+        const routes = [];
+
+        if (res.status === 200 && res.data) {
+          for (const key in res.data) {
+            if (res.data.hasOwnProperty(key)) {
+              const category = res.data[key];
+
+              routes.push({
+                route: '/category/' + key 
+              });
+
+              category.forEach(item => {
+                routes.push({
+                  route: '/product/' + item.id,
+                  payload: item
+                });
+              }); 
+            }
+          }
+        }
+        return routes; 
+      });
+    }
+  }
 }

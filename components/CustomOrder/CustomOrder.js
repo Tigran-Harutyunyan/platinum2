@@ -55,11 +55,9 @@ export default {
               message: 'Order is placed',
               position: "bottom-right"
             });
+            
             this.$router.push({
-              name: 'Categories',
-              params: {
-                id: 1
-              }
+              path: '/category/1' 
             })
           } else {
             this.$notify.error({

@@ -1396,6 +1396,12 @@ textarea {
   position: relative;
   padding-top: 57px;
   z-index: 50; 
+  .slick-prev { 
+    left: -35px;
+  }
+  .slick-next { 
+    right: -35px;
+  }
   .swiper-button-prev,
   .swiper-button-next {
     background: url("../img/sprite.png") no-repeat auto !important;

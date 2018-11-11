@@ -3,17 +3,18 @@ import {
 } from '../event-bus.js';
 import Login from '../Login/Login.vue';
 import Search from '../Search/Search.vue';
-import SearchMobile from '../SearchMobile/SearchMobile.vue';
-//import Hamburger from './Hamburger/Hamburger.vue';
+import SearchMobile from '../SearchMobile/SearchMobile.vue'; 
 import NewBurger from './NewBurger/NewBurger.vue';
 import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher.vue';
-import { mapGetters } from 'vuex';
+import {
+  mapGetters
+} from 'vuex';
 export default {
   data() {
     return {
       showLogin: false,
       isMobileSearch: false,
-      isBurgerOn: false 
+      isBurgerOn: false
     }
   },
   components: {
@@ -21,12 +22,11 @@ export default {
     Search,
     SearchMobile,
     NewBurger,
-    //Hamburger,
     LanguageSwitcher
   },
 
   computed: {
-    classObject () {
+    classObject() {
       return {
         'hamburger--squeeze': this.isBurgerOn,
         'is-active': this.isBurgerOn
@@ -49,47 +49,68 @@ export default {
         return this.$store.getters.getCartItems;
       },
       set: function () {}
-    },
+    }
   },
   methods: {
 
     logout() {
+
       this.$store.dispatch('logout').then((response) => {
         this.removeUser();
       }).catch((error) => {
         this.removeUser();
       });
+
     },
 
-    goToCart(){ 
-      this.$router.push({name:'Cart'})
+    goToCart() {
+
+      this.$router.push({
+        path: '/cart'
+      })
+
     },
+
     removeUser() {
-      
-      EventBus.$emit('onLogout');
+
+      EventBus.$emit('onLogout'); 
+
       EventBus.$emit('authChanged');
+      
       if (this.$route.name !== 'Home', this.$route.name !== 'ProductDetail') {
         this.$router.push({
-          name: 'Categories',
-          params: {
-            id: 1
-          }
+          path: '/category/1'
         });
       }
     },
 
     toSignupPage() {
       this.$router.push({
-        name: 'SignUp'
+        path: '/signup'
       });
     },
 
     onLoginSuccess(response) {
-      this.$store.dispatch('getBasketProducts'); 
+      this.$store.dispatch('getBasketProducts');
     },
   },
-  mounted() {
+  created() { 
+     
+ 
 
+  },
+  mounted() {
+    let token = this.$cookiz.get('token') ? this.$cookiz.get('token') : '';
+  
+    if (token.length) {
+      this.$store.dispatch('setToken', token);
+    }
+
+  /*   let user = this.$cookiz.get('user') ? JSON.parse(this.$cookiz.get('user')) : {};
+
+    if (Object.keys(user).length > 0) {
+      this.$store.dispatch('setUser', user);
+    } */
     EventBus.$on('logout', () => {
       this.logout();
     });
@@ -97,6 +118,6 @@ export default {
     EventBus.$on('showLogin', () => {
       this.showLogin = true;
     });
-     
+
   }
 }

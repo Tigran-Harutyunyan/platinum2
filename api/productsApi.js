@@ -1,7 +1,6 @@
-import api from './api'; 
- 
-
+import api from './api';  
 import productsMiddleware from '../apiMiddlewares/productsMiddleware';
+
 const productsApi = {
   getProductById(productId, locale) {
     return api.get(`getProductById?id=${productId}&lang=${locale}`).then(res => { 

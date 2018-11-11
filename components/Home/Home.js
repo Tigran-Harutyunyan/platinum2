@@ -26,8 +26,24 @@ if (process.browser) {
     })
     .addTo(reviewsController); */
 }
- 
+import axios from 'axios'
 export default {
+  head () {
+    return {
+      title: 'Home',
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'home', name: 'home page description', content: this.data.meta_description }
+      ]
+    } 
+  },
+  
+  async asyncData ({params}) {
+    const { data } = await axios.get(`http://api.platinuminkdesign.com/api/getCustomData?lang=en`)
+    return { 
+      data
+    }
+  },
   data() {
     return {
       minScreenWidth: 1150,
@@ -42,7 +58,10 @@ export default {
   computed: {
     scrollParams() {
       return this.$store.getters.scrollParams
-    }
+    },
+    customData() {
+      return this.$store.getters.getCustomData;
+    },
   },
   methods: {
     toggleCategoryDropdown() {

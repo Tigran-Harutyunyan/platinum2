@@ -19,7 +19,7 @@ const middleware = {
             }
           });
         }
-      }
+      } 
       return products;
     },
     parseProduct(response) {
@@ -49,7 +49,7 @@ const middleware = {
         return 0;
       });
 
-      response.sortedProperties = sortedProperties;
+      response.sortedProperties = sortedProperties; 
       return response;
     },
 
