@@ -28,7 +28,7 @@
       </div>
 
       <!-- PROJECTS SLIDER -->
-      <ProjectsSlider/>
+      <ProjectsSlider :projects="projects"/>
 
       <div class="content-area">
         <div class="main-inner z-indexed">
@@ -59,8 +59,8 @@
   </div>
   <div class="parallax-bg" id="parallax1"></div>
   <div class="main-section" id="staff-section">
-    <Staff/>
-    <Contact locale="storage.locale"></Contact>
+    <Staff :staff="staff"/>
+    <Contact locale="storage.locale" :customData="customData"></Contact>
     <footer class="footer"></footer>
   </div>
 </div>

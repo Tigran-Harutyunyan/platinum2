@@ -5,6 +5,14 @@ import Sidebar from '../Sidebar/Sidebar.vue';
 import HelperLinks from '../HelperLinks/HelperLinks.vue';
 import InfoTabs from '../InfoTabs/InfoTabs.vue';
 import HeaderCategories from '../MobileProductList/MobileProductList.vue';
+import generalMiddleware from '../../apiMiddlewares/generalMiddleware';
+import productsMiddleware from '../../apiMiddlewares/productsMiddleware'; 
+
+import {
+  config
+} from '../../api/config';
+
+import axios from 'axios';
 export default {
   components: {
     Header,
@@ -16,6 +24,7 @@ export default {
     HeaderCategories,
     fullWidth: false
   },
+  
   data() {
     return {
       showSidebar: false,
@@ -23,18 +32,26 @@ export default {
       showInfoTabs: false
     };
   },
+
+  async asyncData(context, error, payload) {
+    let [res, res2, res3] = await Promise.all([
+      axios.get(`${config.host}getSliderImages?lang=en`),
+      axios.get(`${config.host}getSamples?lang=en`),
+      axios.get(`${config.host}getProductsList?lang=en`)
+    ])
+    return {
+      sliderImages: generalMiddleware.fromBackEnd.getSliderImages(res.data),
+      links: generalMiddleware.fromBackEnd.getSamples(res2.data),
+      products: productsMiddleware.fromBackEnd.parseProducts(res3.data),
+    } 
+  },
   watch: {
     $route(to, from) {
       this.checkRoute(to.name);
     }
   },
-  computed: {
-    products() {
-      return this.$store.getters.products;
-    },
-  },
+ 
   mounted() {
-    this.$store.dispatch('getProducts');
 
     /* if (storage.getToken()) {
       this.$store.dispatch('getBasketProducts');
@@ -44,7 +61,7 @@ export default {
     toggleCategoryDropdown() {
       this.showCategoryDropdown = !this.showCategoryDropdown;
     },
-    checkRoute(route) { 
+    checkRoute(route) {
       this.showSidebar = route != 'index-advertisements';
       this.showInfoTabs = route == 'index-category-id' || route == 'index-category-id' ? true : false;
       this.fullWidth = route === 'index-advertisements';

@@ -7,6 +7,13 @@ import Reasons from "./Reasons/Reasons.vue";
 import Contact from "./Contact/Contact.vue";
 import BigSlider from "./BigSlider/BigSlider.vue";
 import HeaderCategories from '../MobileProductList/MobileProductList.vue';
+import generalMiddleware from '../../apiMiddlewares/generalMiddleware';
+import productsMiddleware from '../../apiMiddlewares/productsMiddleware';  
+import {
+  config
+} from '../../api/config';
+
+ 
 let ScrollMagic;
 if (process.browser) {
   ScrollMagic = require('scrollmagic');
@@ -31,19 +38,24 @@ export default {
   head () {
     return {
       title: 'Home',
-      meta: [
-        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
-        { hid: 'home', name: 'home page description', content: this.data.meta_description }
+      meta: [ 
+        { hid: 'home', name: 'home page name', content: "Home page content" }
       ]
     } 
   },
-  
-  async asyncData ({params}) {
-    const { data } = await axios.get(`http://api.platinuminkdesign.com/api/getCustomData?lang=en`)
-    return { 
-      data
-    }
+  async asyncData(context, error, payload) {
+    let [res, res2, res3] = await Promise.all([
+      axios.get(`${config.host}getCustomData?lang=en`),
+      axios.get(`${config.host}getStaff?lang=en`),
+      axios.get(`${config.host}getProjectSliderImages?lang=en`) 
+    ])
+    return {
+      getCustomData: res.data,
+      staff: generalMiddleware.fromBackEnd.getStaff(res2.data),
+      projects: generalMiddleware.fromBackEnd.getProjectSliderImages(res3.data),
+    } 
   },
+ 
   data() {
     return {
       minScreenWidth: 1150,
@@ -117,8 +129,5 @@ export default {
     ProjectsSlider,
     BigSlider,
     HeaderCategories
-  },
-  mounted() {
-   
-  }
+  } 
 }
