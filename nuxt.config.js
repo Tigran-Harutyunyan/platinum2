@@ -97,11 +97,11 @@ module.exports = {
     '@/assets/sass/styles.scss'
   ],
   generate: {
-
+    interval: 200,
     routes: function () {
       return axios.get('http://api.platinuminkdesign.com/api/getProductsList?lang=en').then(res => {
-        console.log('STATUS' + res.status)
-        console.log('DATA' + res.data)
+    /*     console.log('STATUS' + res.status)
+        console.log('DATA' + res.data) */
 
         const routes = [];
 
@@ -111,18 +111,20 @@ module.exports = {
               const category = res.data[key];
 
               routes.push({
-                route: '/category/' + key 
+                route: '/category/' + key,
+                payload:  category 
               });
 
               category.forEach(item => {
                 routes.push({
                   route: '/product/' + item.id,
-                  payload: item
+                  payload:  item   
                 });
               }); 
             }
           }
         }
+      /*   console.log(routes) */
         return routes; 
       });
     }
