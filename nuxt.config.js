@@ -97,7 +97,7 @@ module.exports = {
     '@/assets/sass/styles.scss'
   ],
   generate: {
-    interval: 200,
+    interval: 1000,
     routes: function () {
       return axios.get('http://api.platinuminkdesign.com/api/getProductsList?lang=en').then(res => {
     /*     console.log('STATUS' + res.status)
