@@ -4,8 +4,5 @@ export default {
     sliderImages: {
       type: Array
     }
-  },
-  data() {
-    return {}
   }
 }

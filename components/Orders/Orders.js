@@ -1,5 +1,5 @@
 import OrderDetailsPopup from './OrderDetailsPopup/OrderDetailsPopup.vue';
-import Preloader from '../../commonComponents/Preloader/Preloader.vue';
+import Preloader from '../commonComponents/Preloader/Preloader.vue'; 
 
 export default {
   data() {
