@@ -1,5 +1,5 @@
 import api from './api';
- 
+import storage from '../storage';
 import userMiddleware from '../apiMiddlewares/userMiddleware'; 
 
 const userApi = {
@@ -7,6 +7,14 @@ const userApi = {
   login(params) {
     let url = 'login?'; 
     return api.post(url, params).then(res => { 
+      if (res.success) {
+        if (process.browser){
+          storage.setUser(res);
+          if(res.token){
+            storage.setToken(res.token);
+          }
+        } 
+      }
       return res;
     });
   },

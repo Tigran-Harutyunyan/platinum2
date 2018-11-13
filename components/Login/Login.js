@@ -28,17 +28,20 @@ export default {
       return !this.$v.recoveryMail.$invalid
     }
   },
+  mounted(){
+    this.getUser();
+  },
   methods: {
+    getUser(token){ 
+      console.log(localStorage.getItem("user")) ; 
+    },
     login() {
       this.isLoading = true;
-
       this.$store.dispatch('login', {
         email: this.email,
         password: this.password
-      }).then((response) => {
-
-        this.isLoading = false;
-
+      }).then((response) => { 
+        this.isLoading = false; 
         if (response.error) {
           this.$notify({
             title: 'Login',
@@ -49,7 +52,11 @@ export default {
         }
 
         if (response.success) {
-          this.$cookiz.set('user', response, {
+          if (process.browser) {
+            this.$emit('LoginSuccess', response);  
+            this.close();
+          }
+    /*       this.$cookiz.set('user', response, {
             path: '/',
             maxAge: 60 * 60 * 24 * 7
           });
@@ -59,11 +66,7 @@ export default {
               path: '/',
               maxAge: 60 * 60 * 24 * 7
             });
-          }
-
-          this.$emit('LoginSuccess', response);
-
-          this.close(); 
+          } */  
         }
         EventBus.$emit('authChanged');
       }).catch((error) => {

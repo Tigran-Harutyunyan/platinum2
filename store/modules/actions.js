@@ -2,7 +2,7 @@ import productsApi from '../../api/productsApi';
 import generalApi from '../../api/generalApi';
 import userApi from '../../api/userApi';
 import utils from '../../utils'; 
- 
+import storage from '../../storage';
 export default  {
 
   getProducts: ({
@@ -97,6 +97,7 @@ export default  {
       );
     });
   },
+
   getPartnerImages: ({
     commit,
     state
@@ -269,13 +270,18 @@ export default  {
   setLocale: ({
     commit
   }, payload) => { 
+    if (process.browser) {
+      storage.setLocale(payload);
+    } 
     commit('SET_LOCALE', payload)
   },
 
   setToken: ({
     commit
   }, payload) => {
-    //storage.setToken(payload);
+    if (process.browser) {
+      storage.setToken(payload);
+    } 
     commit('SET_TOKEN', payload)
   },
 

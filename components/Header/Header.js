@@ -6,15 +6,13 @@ import Search from '../Search/Search.vue';
 import SearchMobile from '../SearchMobile/SearchMobile.vue'; 
 import NewBurger from './NewBurger/NewBurger.vue';
 import LanguageSwitcher from './LanguageSwitcher/LanguageSwitcher.vue';
-import {
-  mapGetters
-} from 'vuex';
+ 
 export default {
   data() {
     return {
       showLogin: false,
       isMobileSearch: false,
-      isBurgerOn: false
+      isBurgerOn: false 
     }
   },
   components: {
@@ -94,23 +92,19 @@ export default {
       this.$store.dispatch('getBasketProducts');
     },
   },
-  created() { 
-     
  
-
-  },
   mounted() {
-    let token = this.$cookiz.get('token') ? this.$cookiz.get('token') : '';
-  
+    
+    let token = localStorage.getItem('token') ? localStorage.getItem("token") : '';
     if (token.length) {
       this.$store.dispatch('setToken', token);
     }
-
-  /*   let user = this.$cookiz.get('user') ? JSON.parse(this.$cookiz.get('user')) : {};
-
+  
+    let user = localStorage.getItem('user') ? JSON.parse(localStorage.getItem("user")) : {};
     if (Object.keys(user).length > 0) {
       this.$store.dispatch('setUser', user);
-    } */
+    } 
+
     EventBus.$on('logout', () => {
       this.logout();
     });

@@ -24,7 +24,7 @@
             </ul>
         </div> 
     </div>
-    <div v-if="token"  @click="$router.push({name:'Cart'})">
+    <div v-if="token"  @click="$router.push({path:'/cart'})">
         <span class="icon"></span>
         <div class="link-text">
             <span style="margin-top: 12px;">{{ $t('cart') }}</span>

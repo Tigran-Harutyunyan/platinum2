@@ -59,14 +59,12 @@ Vue.prototype.$confirm = MessageBox.confirm;
 Vue.prototype.$notify = Notification;
 import lang from 'element-ui/lib/locale/lang/en';
 import locale from 'element-ui/lib/locale';
-locale.use(lang);
-
-
+locale.use(lang); 
 
 if (process.browser) {
   //require('gsap');   //debounce = require('lodash.debounce');
-  Vue.component('isotope', require('vueisotope')); 
-  
+  Vue.component('isotope', require('vueisotope'));   
+ 
 }
 
 
