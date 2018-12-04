@@ -45,14 +45,27 @@ module.exports = {
     ['cookie-universal-nuxt', {
       alias: 'cookiz'
     }],
-
+    ['nuxt-i18n', {
+      defaultLocale: 'en',
+      locales: [
+        {
+          code: 'en',
+          file: 'en.json'
+        }, {
+          code: 'am',
+          file: 'am.json'
+        }  
+      ],
+      lazy: true,
+      langDir: 'locales/'
+    }]
   ],
 
   build: {
     /*
      ** Run ESLint on save
      */
-    vendor: ['vue-i18n', 'vueisotope', 'lodash.debounce', 'scrollmagic', 'jquery'],
+    vendor: [ 'vueisotope', 'lodash.debounce', 'scrollmagic', 'jquery'],
     extend(config, {
       isDev,
       isClient
@@ -100,8 +113,8 @@ module.exports = {
     interval: 2500,
     routes: function () {
       return axios.get('http://api.platinuminkdesign.com/api/getProductsList?lang=en').then(res => {
-    /*     console.log('STATUS' + res.status)
-        console.log('DATA' + res.data) */
+        /*     console.log('STATUS' + res.status)
+            console.log('DATA' + res.data) */
 
         const routes = [];
 
@@ -112,20 +125,20 @@ module.exports = {
 
               routes.push({
                 route: '/category/' + key,
-                payload:  category 
+                payload: category
               });
 
               category.forEach(item => {
                 routes.push({
                   route: '/product/' + item.id,
-                  payload:  item   
+                  payload: item
                 });
-              }); 
+              });
             }
           }
         }
-      /*   console.log(routes) */
-        return routes; 
+        /*   console.log(routes) */
+        return routes;
       });
     }
   }
